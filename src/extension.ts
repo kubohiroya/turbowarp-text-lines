@@ -1,6 +1,22 @@
 import definitions from './block-definitions.json' with {type: 'json'};
 
-type BlockDefinition = (typeof definitions.blocks)[number];
+type BlockTypeName = 'COMMAND' | 'REPORTER';
+type ArgumentTypeName = 'STRING' | 'NUMBER';
+
+interface DefinitionArgument {
+  type: ArgumentTypeName;
+  defaultValue: string | number;
+}
+
+interface BlockDefinition {
+  opcode: string;
+  blockType: BlockTypeName;
+  text: string;
+  description: string;
+  arguments: Record<string, DefinitionArgument>;
+}
+
+const blockDefinitions = definitions.blocks as readonly BlockDefinition[];
 
 export class TextLinesExtension {
   getInfo() {
@@ -9,7 +25,7 @@ export class TextLinesExtension {
       id: 'kubohiroyatextlines',
       name: translate(definitions.extensionName),
       color1: '#5B80A5',
-      blocks: definitions.blocks.map((block) => this.toScratchBlock(block))
+      blocks: blockDefinitions.map((block) => this.toScratchBlock(block))
     };
   }
 
