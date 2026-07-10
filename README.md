@@ -4,9 +4,41 @@ A TurboWarp extension for counting, reading, and splitting text by lines.
 
 ## Blocks
 
-- `[text] の行数`
-- `[text] の [line] 行目`
-- `[text] を行ごとのリスト [list] へ`
+<!-- BEGIN GENERATED BLOCKS -->
+
+### `number of lines in [TEXT]`
+
+Returns the number of lines in the supplied text.
+
+| Property | Value |
+|---|---|
+| Type | Reporter |
+| Opcode | `lineCount` |
+| `TEXT` | String, default: `first line\nsecond line` |
+
+### `line [LINE] of [TEXT]`
+
+Returns one line using a one-based line number. Invalid line numbers return an empty string.
+
+| Property | Value |
+|---|---|
+| Type | Reporter |
+| Opcode | `lineAt` |
+| `TEXT` | String, default: `first line\nsecond line` |
+| `LINE` | Number, default: `1` |
+
+### `put lines of [TEXT] into list [LIST]`
+
+Replaces the contents of the named Scratch list with the lines of the supplied text.
+
+| Property | Value |
+|---|---|
+| Type | Command |
+| Opcode | `writeLinesToList` |
+| `TEXT` | String, default: `first line\nsecond line` |
+| `LIST` | String, default: `lines` |
+
+<!-- END GENERATED BLOCKS -->
 
 Line numbers are one-based. An invalid line number returns an empty string. The list block replaces the contents of the named Scratch list.
 
@@ -17,6 +49,12 @@ The extension accepts LF, CRLF, and CR line endings.
 ```bash
 npm install
 npm run check
+```
+
+Regenerate the block documentation after changing `src/block-definitions.json`:
+
+```bash
+npm run docs
 ```
 
 The build produces `dist/text-lines.js`.

@@ -1,36 +1,31 @@
+import definitions from './block-definitions.json' with {type: 'json'};
+
+type BlockTypeName = 'COMMAND' | 'REPORTER';
+type ArgumentTypeName = 'STRING' | 'NUMBER';
+
+interface DefinitionArgument {
+  type: ArgumentTypeName;
+  defaultValue: string | number;
+}
+
+interface BlockDefinition {
+  opcode: string;
+  blockType: BlockTypeName;
+  text: string;
+  description: string;
+  arguments: Record<string, DefinitionArgument>;
+}
+
+const blockDefinitions = definitions.blocks as readonly BlockDefinition[];
+
 export class TextLinesExtension {
   getInfo() {
     const translate = Scratch.translate;
     return {
       id: 'kubohiroyatextlines',
-      name: translate('Text Lines'),
+      name: translate(definitions.extensionName),
       color1: '#5B80A5',
-      blocks: [
-        {
-          opcode: 'lineCount',
-          blockType: Scratch.BlockType.REPORTER,
-          text: translate('number of lines in [TEXT]'),
-          arguments: {TEXT: {type: Scratch.ArgumentType.STRING, defaultValue: 'first line\nsecond line'}}
-        },
-        {
-          opcode: 'lineAt',
-          blockType: Scratch.BlockType.REPORTER,
-          text: translate('line [LINE] of [TEXT]'),
-          arguments: {
-            TEXT: {type: Scratch.ArgumentType.STRING, defaultValue: 'first line\nsecond line'},
-            LINE: {type: Scratch.ArgumentType.NUMBER, defaultValue: 1}
-          }
-        },
-        {
-          opcode: 'writeLinesToList',
-          blockType: Scratch.BlockType.COMMAND,
-          text: translate('put lines of [TEXT] into list [LIST]'),
-          arguments: {
-            TEXT: {type: Scratch.ArgumentType.STRING, defaultValue: 'first line\nsecond line'},
-            LIST: {type: Scratch.ArgumentType.STRING, defaultValue: 'lines'}
-          }
-        }
-      ]
+      blocks: blockDefinitions.map((block) => this.toScratchBlock(block))
     };
   }
 
@@ -52,6 +47,23 @@ export class TextLinesExtension {
       Scratch.vm.runtime.getTargetForStage().lookupVariableByNameAndType(name, 'list');
     if (!variable) throw new Error(`List not found: ${name}`);
     variable.value = splitLines(Scratch.Cast.toString(args.TEXT));
+  }
+
+  private toScratchBlock(block: BlockDefinition): Record<string, unknown> {
+    return {
+      opcode: block.opcode,
+      blockType: Scratch.BlockType[block.blockType],
+      text: Scratch.translate(block.text),
+      arguments: Object.fromEntries(
+        Object.entries(block.arguments).map(([name, argument]) => [
+          name,
+          {
+            type: Scratch.ArgumentType[argument.type],
+            defaultValue: argument.defaultValue
+          }
+        ])
+      )
+    };
   }
 }
 

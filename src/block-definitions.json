@@ -1,0 +1,34 @@
+{
+  "extensionName": "Text Lines",
+  "blocks": [
+    {
+      "opcode": "lineCount",
+      "blockType": "REPORTER",
+      "text": "number of lines in [TEXT]",
+      "description": "Returns the number of lines in the supplied text.",
+      "arguments": {
+        "TEXT": {"type": "STRING", "defaultValue": "first line\nsecond line"}
+      }
+    },
+    {
+      "opcode": "lineAt",
+      "blockType": "REPORTER",
+      "text": "line [LINE] of [TEXT]",
+      "description": "Returns one line using a one-based line number. Invalid line numbers return an empty string.",
+      "arguments": {
+        "TEXT": {"type": "STRING", "defaultValue": "first line\nsecond line"},
+        "LINE": {"type": "NUMBER", "defaultValue": 1}
+      }
+    },
+    {
+      "opcode": "writeLinesToList",
+      "blockType": "COMMAND",
+      "text": "put lines of [TEXT] into list [LIST]",
+      "description": "Replaces the contents of the named Scratch list with the lines of the supplied text.",
+      "arguments": {
+        "TEXT": {"type": "STRING", "defaultValue": "first line\nsecond line"},
+        "LIST": {"type": "STRING", "defaultValue": "lines"}
+      }
+    }
+  ]
+}
