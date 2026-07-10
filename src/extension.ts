@@ -1,32 +1,33 @@
 export class TextLinesExtension {
   getInfo() {
+    const translate = Scratch.translate;
     return {
       id: 'kubohiroyatextlines',
-      name: 'Text Lines',
+      name: translate('Text Lines'),
       color1: '#5B80A5',
       blocks: [
         {
           opcode: 'lineCount',
           blockType: Scratch.BlockType.REPORTER,
-          text: '[TEXT] の行数',
-          arguments: {TEXT: {type: Scratch.ArgumentType.STRING, defaultValue: '1行目\n2行目'}}
+          text: translate('number of lines in [TEXT]'),
+          arguments: {TEXT: {type: Scratch.ArgumentType.STRING, defaultValue: 'first line\nsecond line'}}
         },
         {
           opcode: 'lineAt',
           blockType: Scratch.BlockType.REPORTER,
-          text: '[TEXT] の [LINE] 行目',
+          text: translate('line [LINE] of [TEXT]'),
           arguments: {
-            TEXT: {type: Scratch.ArgumentType.STRING, defaultValue: '1行目\n2行目'},
+            TEXT: {type: Scratch.ArgumentType.STRING, defaultValue: 'first line\nsecond line'},
             LINE: {type: Scratch.ArgumentType.NUMBER, defaultValue: 1}
           }
         },
         {
           opcode: 'writeLinesToList',
           blockType: Scratch.BlockType.COMMAND,
-          text: '[TEXT] を行ごとのリスト [LIST] へ',
+          text: translate('put lines of [TEXT] into list [LIST]'),
           arguments: {
-            TEXT: {type: Scratch.ArgumentType.STRING, defaultValue: '1行目\n2行目'},
-            LIST: {type: Scratch.ArgumentType.STRING, defaultValue: '行リスト'}
+            TEXT: {type: Scratch.ArgumentType.STRING, defaultValue: 'first line\nsecond line'},
+            LIST: {type: Scratch.ArgumentType.STRING, defaultValue: 'lines'}
           }
         }
       ]
