@@ -10,7 +10,8 @@
     "test": "vitest run",
     "docs": "node scripts/generate-readme.mjs",
     "docs:check": "pnpm run docs && git diff --exit-code -- README.md",
-    "check": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run docs:check"
+    "check:dist": "pnpm run build && git diff --exit-code -- dist",
+    "check": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run docs:check && pnpm run check:dist"
   },
   "devDependencies": {
     "@kubohiroya/vite-plugin-turbowarp-extension": "0.1.0",
