@@ -2,6 +2,12 @@
 
 A TurboWarp extension for counting, reading, and splitting text by lines.
 
+## Installation
+
+Download [`dist/text-lines.js`](dist/text-lines.js), then open TurboWarp Desktop and load it as a local custom extension. Enable **Run extension without sandbox** when prompted.
+
+The built JavaScript file is committed to this repository so that users do not need to install Node.js or run the build process.
+
 ## Blocks
 
 <!-- BEGIN GENERATED BLOCKS -->
@@ -57,10 +63,4 @@ Regenerate the block documentation after changing `src/block-definitions.json`:
 npm run docs
 ```
 
-The build produces `dist/text-lines.js`.
-
-Because the extension writes directly to Scratch list variables, load it as an unsandboxed custom extension.
-
-## License
-
-MPL-2.0
+The build produces `dist/text-lines.js`. Commit the rebuilt file whenever the extension source changes.
