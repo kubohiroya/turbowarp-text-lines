@@ -42,7 +42,7 @@ Replaces the contents of the named Scratch list with the lines of the supplied t
 | Type | Command |
 | Opcode | `writeLinesToList` |
 | `TEXT` | String, default: `first line\nsecond line` |
-| `LIST` | String, default: `lines` |
+| `LIST` | String, menu: `LIST_MENU` |
 
 <!-- END GENERATED BLOCKS -->
 

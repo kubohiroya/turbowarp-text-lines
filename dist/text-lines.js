@@ -8,7 +8,7 @@
   'use strict';
 
   const extensionName = "Text Lines";
-  const blocks = [{ "opcode": "lineCount", "blockType": "REPORTER", "text": "number of lines in [TEXT]", "description": "Returns the number of lines in the supplied text.", "arguments": { "TEXT": { "type": "STRING", "defaultValue": "first line\nsecond line" } } }, { "opcode": "lineAt", "blockType": "REPORTER", "text": "line [LINE] of [TEXT]", "description": "Returns one line using a one-based line number. Invalid line numbers return an empty string.", "arguments": { "TEXT": { "type": "STRING", "defaultValue": "first line\nsecond line" }, "LINE": { "type": "NUMBER", "defaultValue": 1 } } }, { "opcode": "writeLinesToList", "blockType": "COMMAND", "text": "put lines of [TEXT] into list [LIST]", "description": "Replaces the contents of the named Scratch list with the lines of the supplied text.", "arguments": { "TEXT": { "type": "STRING", "defaultValue": "first line\nsecond line" }, "LIST": { "type": "STRING", "defaultValue": "lines" } } }];
+  const blocks = [{ "opcode": "lineCount", "blockType": "REPORTER", "text": "number of lines in [TEXT]", "description": "Returns the number of lines in the supplied text.", "arguments": { "TEXT": { "type": "STRING", "defaultValue": "first line\nsecond line" } } }, { "opcode": "lineAt", "blockType": "REPORTER", "text": "line [LINE] of [TEXT]", "description": "Returns one line using a one-based line number. Invalid line numbers return an empty string.", "arguments": { "TEXT": { "type": "STRING", "defaultValue": "first line\nsecond line" }, "LINE": { "type": "NUMBER", "defaultValue": 1 } } }, { "opcode": "writeLinesToList", "blockType": "COMMAND", "text": "put lines of [TEXT] into list [LIST]", "description": "Replaces the contents of the named Scratch list with the lines of the supplied text.", "arguments": { "TEXT": { "type": "STRING", "defaultValue": "first line\nsecond line" }, "LIST": { "type": "STRING", "menu": "LIST_MENU" } } }];
   const definitions = {
     extensionName,
     blocks
@@ -21,8 +21,25 @@
         id: "kubohiroyatextlines",
         name: translate(definitions.extensionName),
         color1: "#5B80A5",
-        blocks: blockDefinitions.map((block) => this.toScratchBlock(block))
+        blocks: blockDefinitions.map((block) => this.toScratchBlock(block)),
+        menus: {
+          LIST_MENU: {
+            acceptReporters: true,
+            items: "getLists"
+          }
+        }
       };
+    }
+    getLists() {
+      const stage = Scratch.vm.runtime.getTargetForStage();
+      const editingTarget = Scratch.vm.editingTarget;
+      const lists = [
+        ...Object.values(stage.variables),
+        ...editingTarget && editingTarget !== stage ? Object.values(editingTarget.variables) : []
+      ].filter((variable) => variable.type === "list");
+      const uniqueLists = [...new Map(lists.map((list) => [list.id, list])).values()];
+      if (uniqueLists.length === 0) return [""];
+      return uniqueLists.map((list) => ({ text: list.name, value: list.id }));
     }
     lineCount(args) {
       return splitLines(Scratch.Cast.toString(args.TEXT)).length;
@@ -34,10 +51,12 @@
       return lines[line - 1] ?? "";
     }
     writeLinesToList(args, util) {
-      const name = Scratch.Cast.toString(args.LIST);
-      const variable = util.target.lookupVariableByNameAndType(name, "list") ?? Scratch.vm.runtime.getTargetForStage().lookupVariableByNameAndType(name, "list");
-      if (!variable) throw new Error(`List not found: ${name}`);
+      const listIdOrName = Scratch.Cast.toString(args.LIST);
+      const stage = Scratch.vm.runtime.getTargetForStage();
+      const variable = util.target.lookupVariableById(listIdOrName) ?? stage.lookupVariableById(listIdOrName) ?? util.target.lookupVariableByNameAndType(listIdOrName, "list") ?? stage.lookupVariableByNameAndType(listIdOrName, "list");
+      if (!variable || variable.type !== "list") throw new Error(`List not found: ${listIdOrName}`);
       variable.value = splitLines(Scratch.Cast.toString(args.TEXT));
+      variable._monitorUpToDate = false;
     }
     toScratchBlock(block) {
       return {
@@ -47,10 +66,13 @@
         arguments: Object.fromEntries(
           Object.entries(block.arguments).map(([name, argument]) => [
             name,
-            {
-              type: Scratch.ArgumentType[argument.type],
-              defaultValue: argument.defaultValue
-            }
+            Object.fromEntries(
+              Object.entries({
+                type: Scratch.ArgumentType[argument.type],
+                defaultValue: argument.defaultValue,
+                menu: argument.menu
+              }).filter(([, value]) => value !== void 0)
+            )
           ])
         )
       };
