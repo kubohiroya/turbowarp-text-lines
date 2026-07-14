@@ -92,6 +92,26 @@ describe('TextLinesExtension', () => {
     expect(list.value).toEqual(['a', 'b']);
   });
 
+  it('writes to the current target when the stage is unavailable', () => {
+    const extension = new TextLinesExtension();
+    const list = {id: 'list-id', name: 'lines', type: 'list', value: [] as unknown[]};
+    const target = {
+      variables: {list},
+      lookupVariableById: (id: string) => (id === 'list-id' ? list : null),
+      lookupVariableByNameAndType: () => null
+    };
+    vi.stubGlobal('Scratch', {
+      Cast: {
+        toString: (value: unknown) => String(value ?? ''),
+        toNumber: (value: unknown) => Number(value)
+      },
+      vm: {editingTarget: target, runtime: {getTargetForStage: () => null}}
+    });
+
+    extension.writeLinesToList({TEXT: 'a\nb', LIST: 'list-id'}, {target});
+    expect(list.value).toEqual(['a', 'b']);
+  });
+
   it('lists stage and editing-target lists using their IDs', () => {
     const extension = new TextLinesExtension();
     const stageList = {id: 'stage-list', name: 'shared', type: 'list', value: []};
@@ -128,5 +148,20 @@ describe('TextLinesExtension', () => {
     });
 
     expect(extension.getLists()).toEqual(['']);
+  });
+
+  it('lists editing-target lists when the stage is unavailable', () => {
+    const extension = new TextLinesExtension();
+    const localList = {id: 'local-list', name: 'local', type: 'list', value: []};
+    const editingTarget = {
+      variables: {localList},
+      lookupVariableById: () => null,
+      lookupVariableByNameAndType: () => null
+    };
+    vi.stubGlobal('Scratch', {
+      vm: {editingTarget, runtime: {getTargetForStage: () => null}}
+    });
+
+    expect(extension.getLists()).toEqual([{text: 'local', value: 'local-list'}]);
   });
 });

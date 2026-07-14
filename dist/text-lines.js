@@ -34,12 +34,11 @@
       const stage = Scratch.vm.runtime.getTargetForStage();
       const editingTarget = Scratch.vm.editingTarget;
       const lists = [
-        ...Object.values(stage.variables),
+        ...stage ? Object.values(stage.variables) : [],
         ...editingTarget && editingTarget !== stage ? Object.values(editingTarget.variables) : []
       ].filter((variable) => variable.type === "list");
-      const uniqueLists = [...new Map(lists.map((list) => [list.id, list])).values()];
-      if (uniqueLists.length === 0) return [""];
-      return uniqueLists.map((list) => ({ text: list.name, value: list.id }));
+      if (lists.length === 0) return [""];
+      return lists.map((list) => ({ text: list.name, value: list.id }));
     }
     lineCount(args) {
       return splitLines(Scratch.Cast.toString(args.TEXT)).length;
@@ -53,7 +52,7 @@
     writeLinesToList(args, util) {
       const listIdOrName = Scratch.Cast.toString(args.LIST);
       const stage = Scratch.vm.runtime.getTargetForStage();
-      const variable = util.target.lookupVariableById(listIdOrName) ?? stage.lookupVariableById(listIdOrName) ?? util.target.lookupVariableByNameAndType(listIdOrName, "list") ?? stage.lookupVariableByNameAndType(listIdOrName, "list");
+      const variable = util.target.lookupVariableById(listIdOrName) ?? stage?.lookupVariableById(listIdOrName) ?? util.target.lookupVariableByNameAndType(listIdOrName, "list") ?? stage?.lookupVariableByNameAndType(listIdOrName, "list");
       if (!variable || variable.type !== "list") throw new Error(`List not found: ${listIdOrName}`);
       variable.value = splitLines(Scratch.Cast.toString(args.TEXT));
       variable._monitorUpToDate = false;

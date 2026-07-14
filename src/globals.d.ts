@@ -21,6 +21,6 @@ interface ScratchApi {
   ArgumentType: Record<'STRING' | 'NUMBER', string>;
   Cast: { toString(value: unknown): string; toNumber(value: unknown): number };
   translate: ScratchTranslate;
-  vm: { editingTarget: ScratchTarget | null; runtime: { getTargetForStage(): ScratchTarget } };
+  vm: { editingTarget: ScratchTarget | null; runtime: { getTargetForStage(): ScratchTarget | null } };
 }
 declare const Scratch: ScratchApi;
