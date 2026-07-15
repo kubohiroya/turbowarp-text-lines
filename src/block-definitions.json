@@ -27,7 +27,7 @@
       "description": "Replaces the contents of the named Scratch list with the lines of the supplied text.",
       "arguments": {
         "TEXT": {"type": "STRING", "defaultValue": "first line\nsecond line"},
-        "LIST": {"type": "STRING", "defaultValue": "lines"}
+        "LIST": {"type": "STRING", "menu": "LIST_MENU"}
       }
     }
   ]

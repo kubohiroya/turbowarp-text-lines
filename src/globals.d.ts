@@ -1,5 +1,15 @@
-interface ScratchVariable { value: unknown[]; type: string; name: string; }
-interface ScratchTarget { lookupVariableByNameAndType(name: string, type: string): ScratchVariable | null; }
+interface ScratchVariable {
+  id: string;
+  value: unknown[];
+  type: string;
+  name: string;
+  _monitorUpToDate?: boolean;
+}
+interface ScratchTarget {
+  variables: Record<string, ScratchVariable>;
+  lookupVariableById(id: string): ScratchVariable | null;
+  lookupVariableByNameAndType(name: string, type: string): ScratchVariable | null;
+}
 interface ScratchBlockUtility { target: ScratchTarget; }
 interface ScratchTranslate {
   (text: string): string;
@@ -11,6 +21,6 @@ interface ScratchApi {
   ArgumentType: Record<'STRING' | 'NUMBER', string>;
   Cast: { toString(value: unknown): string; toNumber(value: unknown): number };
   translate: ScratchTranslate;
-  vm: { runtime: { getTargetForStage(): ScratchTarget } };
+  vm: { editingTarget: ScratchTarget | null; runtime: { getTargetForStage(): ScratchTarget | null } };
 }
 declare const Scratch: ScratchApi;

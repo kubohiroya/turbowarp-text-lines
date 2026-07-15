@@ -5,7 +5,8 @@ type ArgumentTypeName = 'STRING' | 'NUMBER';
 
 interface DefinitionArgument {
   type: ArgumentTypeName;
-  defaultValue: string | number;
+  defaultValue?: string | number;
+  menu?: string;
 }
 
 interface BlockDefinition {
@@ -25,8 +26,26 @@ export class TextLinesExtension {
       id: 'kubohiroyatextlines',
       name: translate(definitions.extensionName),
       color1: '#5B80A5',
-      blocks: blockDefinitions.map((block) => this.toScratchBlock(block))
+      blocks: blockDefinitions.map((block) => this.toScratchBlock(block)),
+      menus: {
+        LIST_MENU: {
+          acceptReporters: true,
+          items: 'getLists'
+        }
+      }
     };
+  }
+
+  getLists(): Array<string | {text: string; value: string}> {
+    const stage = Scratch.vm.runtime.getTargetForStage();
+    const editingTarget = Scratch.vm.editingTarget;
+    const lists = [
+      ...(stage ? Object.values(stage.variables) : []),
+      ...(editingTarget && editingTarget !== stage ? Object.values(editingTarget.variables) : [])
+    ].filter((variable) => variable.type === 'list');
+
+    if (lists.length === 0) return [''];
+    return lists.map((list) => ({text: list.name, value: list.id}));
   }
 
   lineCount(args: {TEXT: unknown}): number {
@@ -41,12 +60,16 @@ export class TextLinesExtension {
   }
 
   writeLinesToList(args: {TEXT: unknown; LIST: unknown}, util: ScratchBlockUtility): void {
-    const name = Scratch.Cast.toString(args.LIST);
+    const listIdOrName = Scratch.Cast.toString(args.LIST);
+    const stage = Scratch.vm.runtime.getTargetForStage();
     const variable =
-      util.target.lookupVariableByNameAndType(name, 'list') ??
-      Scratch.vm.runtime.getTargetForStage().lookupVariableByNameAndType(name, 'list');
-    if (!variable) throw new Error(`List not found: ${name}`);
+      util.target.lookupVariableById(listIdOrName) ??
+      stage?.lookupVariableById(listIdOrName) ??
+      util.target.lookupVariableByNameAndType(listIdOrName, 'list') ??
+      stage?.lookupVariableByNameAndType(listIdOrName, 'list');
+    if (!variable || variable.type !== 'list') throw new Error(`List not found: ${listIdOrName}`);
     variable.value = splitLines(Scratch.Cast.toString(args.TEXT));
+    variable._monitorUpToDate = false;
   }
 
   private toScratchBlock(block: BlockDefinition): Record<string, unknown> {
@@ -57,10 +80,13 @@ export class TextLinesExtension {
       arguments: Object.fromEntries(
         Object.entries(block.arguments).map(([name, argument]) => [
           name,
-          {
-            type: Scratch.ArgumentType[argument.type],
-            defaultValue: argument.defaultValue
-          }
+          Object.fromEntries(
+            Object.entries({
+              type: Scratch.ArgumentType[argument.type],
+              defaultValue: argument.defaultValue,
+              menu: argument.menu
+            }).filter(([, value]) => value !== undefined)
+          )
         ])
       )
     };

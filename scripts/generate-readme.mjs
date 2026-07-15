@@ -28,9 +28,14 @@ function renderBlock(block) {
     ['Opcode', `\`${block.opcode}\``]
   ];
   for (const [name, argument] of Object.entries(block.arguments ?? {})) {
+    const details = [titleCase(argument.type)];
+    if (argument.menu) details.push(`menu: \`${argument.menu}\``);
+    if (argument.defaultValue !== undefined) {
+      details.push(`default: \`${formatDefault(argument.defaultValue)}\``);
+    }
     rows.push([
       `\`${name}\``,
-      `${titleCase(argument.type)}, default: \`${formatDefault(argument.defaultValue)}\``
+      details.join(', ')
     ]);
   }
   return [
