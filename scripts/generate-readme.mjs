@@ -43,9 +43,14 @@ function renderBlock(block) {
     '',
     block.description,
     '',
+    '<details>',
+    '<summary>Block metadata</summary>',
+    '',
     '| Property | Value |',
     '|---|---|',
-    ...rows.map(([name, value]) => `| ${name} | ${value} |`)
+    ...rows.map(([name, value]) => `| ${name} | ${value} |`),
+    '',
+    '</details>'
   ].join('\n');
 }
 
