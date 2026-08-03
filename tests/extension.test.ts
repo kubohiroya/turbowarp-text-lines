@@ -26,6 +26,7 @@ describe('TextLinesExtension', () => {
     const extension = new TextLinesExtension();
 
     expect(extension.getInfo()).toMatchObject({
+      docsURI: 'https://kubohiroya.github.io/turbowarp-text-lines/',
       blocks: [
         {},
         {},

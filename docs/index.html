@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Illustrated user guide for the TurboWarp Text Lines extension.">
+    <title>Text Lines — User Guide</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="alternate" hreflang="en" href="https://kubohiroya.github.io/turbowarp-text-lines/">
+    <link rel="alternate" hreflang="ja" href="https://kubohiroya.github.io/turbowarp-text-lines/ja/">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">≡</span>
+          <span>Text Lines</span>
+        </a>
+        <div class="nav-links">
+          <a href="#start">Get started</a>
+          <a href="#blocks">Blocks</a>
+          <a class="language-link" href="ja/" lang="ja" hreflang="ja">日本語</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">TurboWarp extension guide</p>
+        <h1>Turn text into lines.</h1>
+        <p class="lead">Count lines, read one line, or copy every line into a Scratch list with three focused blocks.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#start">Start using Text Lines</a>
+          <a class="button" href="https://github.com/kubohiroya/turbowarp-text-lines">View source on GitHub</a>
+        </div>
+      </section>
+
+      <section class="section" id="start">
+        <div class="section-heading">
+          <p class="eyebrow">Quick start</p>
+          <h2>Load the extension</h2>
+          <p>Text Lines writes directly to Scratch lists, so it must run without the extension sandbox.</p>
+        </div>
+        <div class="quick-start">
+          <article class="step">
+            <h3>Download</h3>
+            <p>Get <a href="https://github.com/kubohiroya/turbowarp-text-lines/blob/main/dist/text-lines.js"><code>text-lines.js</code></a> from the repository.</p>
+          </article>
+          <article class="step">
+            <h3>Add to TurboWarp</h3>
+            <p>In TurboWarp Desktop, open Extensions, choose Custom Extension, then load the downloaded file.</p>
+          </article>
+          <article class="step">
+            <h3>Allow list access</h3>
+            <p>Enable <strong>Run extension without sandbox</strong> when TurboWarp asks for permission.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="how-heading">
+        <div class="section-heading">
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-heading">One input, three useful results</h2>
+          <p>Text Lines separates the input wherever it finds a line ending, then uses the resulting lines in the block you choose.</p>
+        </div>
+        <figure class="diagram" aria-labelledby="diagram-caption">
+          <div class="diagram-input">
+            <span class="diagram-label">Input text</span>
+            <pre class="text-sample">Apple
+Banana
+Cherry</pre>
+          </div>
+          <div class="diagram-path">
+            <div class="scratch-block reporter">number of lines in <span class="argument">text</span></div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="result"><span class="diagram-label">Reports</span>3</div>
+          </div>
+          <div class="diagram-path">
+            <div class="scratch-block reporter">line <span class="argument">2</span> of <span class="argument">text</span></div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="result"><span class="diagram-label">Reports</span>Banana</div>
+          </div>
+          <div class="diagram-path">
+            <div class="scratch-block">put lines of <span class="argument">text</span> into list <span class="argument">items</span></div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="result list-result">
+              <span class="diagram-label">List “items” becomes</span>
+              <ol><li>Apple</li><li>Banana</li><li>Cherry</li></ol>
+            </div>
+          </div>
+          <figcaption id="diagram-caption">The list block replaces the list’s existing items. The two rounded reporter blocks only return a value.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" id="blocks">
+        <div class="section-heading">
+          <p class="eyebrow">Block reference</p>
+          <h2>Choose the result you need</h2>
+        </div>
+        <div class="block-grid">
+          <article class="block-card">
+            <div class="scratch-block reporter">number of lines in <span class="argument">text</span></div>
+            <div class="block-copy">
+              <h3>Count lines</h3>
+              <p>Returns how many lines the input contains.</p>
+              <ul><li>A blank input is one empty line.</li><li>A final line ending adds an empty last line.</li></ul>
+            </div>
+          </article>
+          <article class="block-card">
+            <div class="scratch-block reporter">line <span class="argument">1</span> of <span class="argument">text</span></div>
+            <div class="block-copy">
+              <h3>Read one line</h3>
+              <p>Returns the line at the requested position.</p>
+              <ul><li>Line numbering starts at 1.</li><li>Invalid line numbers return an empty string.</li></ul>
+            </div>
+          </article>
+          <article class="block-card">
+            <div class="scratch-block">put lines of <span class="argument">text</span> into list <span class="argument">list</span></div>
+            <div class="block-copy">
+              <h3>Fill a list</h3>
+              <p>Splits the input and writes each line as one list item.</p>
+              <ul><li>Choose a stage or sprite list from the menu.</li><li>Existing list items are replaced.</li></ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="details-heading">
+        <div class="section-heading">
+          <p class="eyebrow">Details</p>
+          <h2 id="details-heading">Line endings and list safety</h2>
+        </div>
+        <div class="notes-grid">
+          <article class="note-card">
+            <h3>Works across platforms</h3>
+            <p>LF (<code>\n</code>), CRLF (<code>\r\n</code>), and CR (<code>\r</code>) are all treated as a single line ending.</p>
+          </article>
+          <article class="note-card">
+            <h3>List changes are immediate</h3>
+            <p>The selected list is updated as soon as the command block runs, and list monitors refresh automatically.</p>
+            <div class="callout"><strong>Before running:</strong> copy any list contents you need to keep. The block replaces them.</div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Text Lines for TurboWarp</p>
+      <p><a href="https://github.com/kubohiroya/turbowarp-text-lines">Source code and license</a></p>
+    </footer>
+  </body>
+</html>

@@ -25,6 +25,7 @@ export class TextLinesExtension {
     return {
       id: 'kubohiroyatextlines',
       name: translate(definitions.extensionName),
+      docsURI: 'https://kubohiroya.github.io/turbowarp-text-lines/',
       color1: '#5B80A5',
       blocks: blockDefinitions.map((block) => this.toScratchBlock(block)),
       menus: {

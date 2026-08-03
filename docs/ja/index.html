@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TurboWarp拡張機能「Text Lines」の図解付き利用ガイド。">
+    <title>Text Lines — 利用ガイド</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="alternate" hreflang="en" href="https://kubohiroya.github.io/turbowarp-text-lines/">
+    <link rel="alternate" hreflang="ja" href="https://kubohiroya.github.io/turbowarp-text-lines/ja/">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="メインナビゲーション">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">≡</span>
+          <span>Text Lines</span>
+        </a>
+        <div class="nav-links">
+          <a href="#start">使い始める</a>
+          <a href="#blocks">ブロック</a>
+          <a class="language-link" href="../" lang="en" hreflang="en">English</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">TurboWarp拡張機能ガイド</p>
+        <h1>テキストを、行ごとに。</h1>
+        <p class="lead">3つのシンプルなブロックで、テキストの行数を数え、1行を取り出し、全行をScratchのリストへ書き込めます。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#start">Text Linesを使い始める</a>
+          <a class="button" href="https://github.com/kubohiroya/turbowarp-text-lines">GitHubでソースを見る</a>
+        </div>
+      </section>
+
+      <section class="section" id="start">
+        <div class="section-heading">
+          <p class="eyebrow">クイックスタート</p>
+          <h2>拡張機能を読み込む</h2>
+          <p>Text LinesはScratchのリストへ直接書き込むため、サンドボックスなしで実行する必要があります。</p>
+        </div>
+        <div class="quick-start">
+          <article class="step">
+            <h3>ダウンロード</h3>
+            <p>リポジトリから<a href="https://github.com/kubohiroya/turbowarp-text-lines/blob/main/dist/text-lines.js"><code>text-lines.js</code></a>を取得します。</p>
+          </article>
+          <article class="step">
+            <h3>TurboWarpへ追加</h3>
+            <p>TurboWarp Desktopで「拡張機能」から「カスタム拡張機能」を選び、ダウンロードしたファイルを読み込みます。</p>
+          </article>
+          <article class="step">
+            <h3>リスト操作を許可</h3>
+            <p>確認画面で<strong>サンドボックス化せずに拡張機能を実行</strong>を有効にします。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="how-heading">
+        <div class="section-heading">
+          <p class="eyebrow">動作のしくみ</p>
+          <h2 id="how-heading">1つの入力から、3つの結果へ</h2>
+          <p>入力テキストを改行位置で分割し、選んだブロックに応じて行を利用します。</p>
+        </div>
+        <figure class="diagram" aria-labelledby="diagram-caption">
+          <div class="diagram-input">
+            <span class="diagram-label">入力テキスト</span>
+            <pre class="text-sample">りんご
+バナナ
+さくらんぼ</pre>
+          </div>
+          <div class="diagram-path">
+            <div class="scratch-block reporter">number of lines in <span class="argument">テキスト</span></div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="result"><span class="diagram-label">返す値</span>3</div>
+          </div>
+          <div class="diagram-path">
+            <div class="scratch-block reporter">line <span class="argument">2</span> of <span class="argument">テキスト</span></div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="result"><span class="diagram-label">返す値</span>バナナ</div>
+          </div>
+          <div class="diagram-path">
+            <div class="scratch-block">put lines of <span class="argument">テキスト</span> into list <span class="argument">項目</span></div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="result list-result">
+              <span class="diagram-label">リスト「項目」の新しい内容</span>
+              <ol><li>りんご</li><li>バナナ</li><li>さくらんぼ</li></ol>
+            </div>
+          </div>
+          <figcaption id="diagram-caption">リスト用ブロックは既存の項目を置き換えます。丸い2つの値ブロックは値を返すだけです。</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" id="blocks">
+        <div class="section-heading">
+          <p class="eyebrow">ブロック一覧</p>
+          <h2>必要な結果に合わせて選ぶ</h2>
+          <p>ブロック名は、TurboWarp上で探しやすいように実際の英語表記で示しています。</p>
+        </div>
+        <div class="block-grid">
+          <article class="block-card">
+            <div class="scratch-block reporter">number of lines in <span class="argument">テキスト</span></div>
+            <div class="block-copy">
+              <h3>行数を数える</h3>
+              <p>入力に含まれる行の数を返します。</p>
+              <ul><li>空の入力は、空の1行として数えます。</li><li>末尾の改行後には、空の最終行ができます。</li></ul>
+            </div>
+          </article>
+          <article class="block-card">
+            <div class="scratch-block reporter">line <span class="argument">1</span> of <span class="argument">テキスト</span></div>
+            <div class="block-copy">
+              <h3>1行を取り出す</h3>
+              <p>指定した位置の行を返します。</p>
+              <ul><li>行番号は1から始まります。</li><li>無効な行番号では空文字列を返します。</li></ul>
+            </div>
+          </article>
+          <article class="block-card">
+            <div class="scratch-block">put lines of <span class="argument">テキスト</span> into list <span class="argument">リスト</span></div>
+            <div class="block-copy">
+              <h3>リストへ入れる</h3>
+              <p>入力を分割し、各行を1つずつリスト項目として書き込みます。</p>
+              <ul><li>ステージまたはスプライトのリストをメニューから選べます。</li><li>既存のリスト項目は置き換えられます。</li></ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="details-heading">
+        <div class="section-heading">
+          <p class="eyebrow">詳しい仕様</p>
+          <h2 id="details-heading">改行コードとリストの安全性</h2>
+        </div>
+        <div class="notes-grid">
+          <article class="note-card">
+            <h3>異なるOSでも動作</h3>
+            <p>LF（<code>\n</code>）、CRLF（<code>\r\n</code>）、CR（<code>\r</code>）を、いずれも1つの改行として扱います。</p>
+          </article>
+          <article class="note-card">
+            <h3>リストはすぐに更新</h3>
+            <p>コマンドブロックの実行直後に、選択したリストとリストモニターが更新されます。</p>
+            <div class="callout"><strong>実行前の注意：</strong>残したいリスト内容はコピーしてください。このブロックを実行すると置き換えられます。</div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>TurboWarp用 Text Lines</p>
+      <p><a href="https://github.com/kubohiroya/turbowarp-text-lines">ソースコードとライセンス</a></p>
+    </footer>
+  </body>
+</html>
