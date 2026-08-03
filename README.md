@@ -2,6 +2,10 @@
 
 A TurboWarp extension for counting, reading, and splitting text by lines.
 
+## User documentation
+
+Read the illustrated guide in [English](https://kubohiroya.github.io/turbowarp-text-lines/) or [Japanese](https://kubohiroya.github.io/turbowarp-text-lines/ja/). The English page is the default documentation linked from TurboWarp.
+
 ## Installation
 
 Download [`dist/text-lines.js`](dist/text-lines.js), then open TurboWarp Desktop and load it as a local custom extension. Enable **Run extension without sandbox** when prompted.
