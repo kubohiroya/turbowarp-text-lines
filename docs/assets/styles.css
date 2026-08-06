@@ -40,6 +40,12 @@ a:hover {
   text-decoration-thickness: 0.14em;
 }
 
+a:focus-visible {
+  outline: 3px solid var(--extension);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
 code {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-size: 0.92em;
@@ -54,18 +60,17 @@ code {
   backdrop-filter: blur(16px);
 }
 
-.nav,
+.appbar,
 main,
 .site-footer {
   width: min(70rem, calc(100% - 2rem));
   margin-inline: auto;
 }
 
-.nav {
-  min-height: 4rem;
+.appbar {
+  min-height: 4.25rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
 }
 
@@ -91,22 +96,54 @@ main,
   letter-spacing: -0.08em;
 }
 
-.nav-links {
+.primary-nav {
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-left: auto;
   font-size: 0.92rem;
 }
 
-.language-link {
+.primary-nav a,
+.github-link {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.primary-nav a:hover,
+.github-link:hover {
+  color: var(--ink);
+}
+
+.github-link {
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.6rem;
+  font-size: 0.84rem;
+  font-weight: 760;
+}
+
+.language-switch {
   display: inline-flex;
-  align-items: center;
-  min-height: 2.35rem;
-  padding: 0.25rem 0.8rem;
+  flex: 0 0 auto;
+  padding: 0.2rem;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--surface);
+  white-space: nowrap;
+}
+
+.language-switch a {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 760;
   text-decoration: none;
+}
+
+.language-switch a[aria-current="page"] {
+  color: var(--ink);
+  background: var(--extension-soft);
 }
 
 .hero {
@@ -428,12 +465,22 @@ h1 {
     transform: rotate(90deg);
   }
 
-  .nav-links > a:not(.language-link) {
+  .primary-nav {
     display: none;
+  }
+
+  .github-link {
+    margin-left: auto;
   }
 
   .site-footer {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 34rem) {
+  .brand-text {
+    display: none;
   }
 }
 
