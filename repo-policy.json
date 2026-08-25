@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "productName": "TurboWarp Text Lines",
+  "packageType": "extension",
+  "licensePolicy": "mpl-2.0",
+  "packageManager": "pnpm",
+  "node": {
+    "minimum": "22"
+  },
+  "extension": {
+    "id": "kubohiroyatextlines",
+    "bundle": "dist/text-lines.js"
+  },
+  "publishedLicenseDecision": {
+    "license": "MPL-2.0",
+    "basis": [
+      "repository LICENSE history uses MPL-2.0",
+      "Vite extension metadata uses MPL-2.0",
+      "generated dist header uses MPL-2.0"
+    ],
+    "nonRetroactive": true
+  },
+  "exceptions": {
+    "upstreamFork": false,
+    "mixedContentLicenses": false,
+    "legacyPackageName": false,
+    "thirdPartyBundle": false
+  }
+}
