@@ -1,4 +1,4 @@
-# TurboWarp Text Lines
+# TurboWarp-Text-Lines
 
 Use multiline text in TurboWarp projects. Text Lines adds three blocks that can:
 
