@@ -148,4 +148,4 @@ When extension source changes, rebuild and commit [`dist/text-lines.js`](dist/te
 
 ## License
 
-[MIT](LICENSE)
+[MPL-2.0](LICENSE)
