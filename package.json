@@ -1,18 +1,50 @@
 {
   "name": "@kubohiroya/turbowarp-text-lines",
   "version": "0.1.1",
+  "description": "Use multiline text in TurboWarp projects with line counting, lookup, and list-writing blocks.",
   "author": "Hiroya Kubo <hiroya@cuc.ac.jp>",
   "license": "MPL-2.0",
+  "homepage": "https://github.com/kubohiroya/turbowarp-text-lines#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubohiroya/turbowarp-text-lines.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kubohiroya/turbowarp-text-lines/issues"
+  },
+  "keywords": [
+    "turbowarp",
+    "scratch",
+    "extension",
+    "text",
+    "lines",
+    "list"
+  ],
   "type": "module",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "packageManager": "pnpm@11.11.0",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "vite build --watch",
     "typecheck": "tsc --noEmit",
     "build": "vite build",
     "test": "vitest run",
     "docs": "node scripts/generate-readme.mjs",
-    "docs:check": "npm run docs && git diff --exit-code -- README.md",
-    "check:dist": "npm run build && git diff --exit-code -- dist",
-    "check": "npm run typecheck && npm run test && npm run build && npm run docs:check && npm run check:dist"
+    "docs:check": "pnpm run docs && git diff --exit-code -- README.md",
+    "check:dist": "pnpm run build && git diff --exit-code -- dist",
+    "repo:check": "node scripts/check-repo.mjs",
+    "pack:check": "npm pack --dry-run --ignore-scripts",
+    "check": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run docs:check && pnpm run check:dist && pnpm run repo:check && pnpm run pack:check"
   },
   "devDependencies": {
     "@kubohiroya/vite-plugin-turbowarp-extension": "0.1.0",

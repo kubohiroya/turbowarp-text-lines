@@ -1,4 +1,4 @@
-# Text Lines for TurboWarp
+# TurboWarp Text Lines
 
 Use multiline text in TurboWarp projects. Text Lines adds three blocks that can:
 
@@ -127,25 +127,37 @@ For illustrated examples and the Japanese version, open the [complete user guide
 
 ## Development
 
-Install dependencies and run every check:
+Install dependencies with Node.js 22 or later and run every check:
 
 ```bash
-npm install
-npm run check
+corepack enable
+pnpm install --frozen-lockfile
+pnpm run check
 ```
 
 Useful commands:
 
 | Command | Purpose |
 |---|---|
-| `npm run dev` | Rebuild the extension while files change |
-| `npm run test` | Run the test suite once |
-| `npm run typecheck` | Check TypeScript types |
-| `npm run build` | Build `dist/text-lines.js` |
-| `npm run docs` | Regenerate the block reference from the canonical definitions |
+| `pnpm run dev` | Rebuild the extension while files change |
+| `pnpm run test` | Run the test suite once |
+| `pnpm run typecheck` | Check TypeScript types |
+| `pnpm run build` | Build `dist/text-lines.js` |
+| `pnpm run docs` | Regenerate the block reference from the canonical definitions |
 
-When extension source changes, rebuild and commit [`dist/text-lines.js`](dist/text-lines.js). When block definitions change, run `npm run docs` before committing.
+When extension source changes, rebuild and commit [`dist/text-lines.js`](dist/text-lines.js). When block definitions change, run `pnpm run docs` before committing.
+
+## Release metadata
+
+MPL-2.0 is the forward license source of truth for this repository. The decision is based on the
+repository license history, Vite extension metadata, and generated bundle header. Published package
+versions keep the terms they were distributed with; this repository does not revoke earlier grants
+retroactively.
+
+`package.json` is the package metadata source of truth. `repo-policy.json` records the repository
+policy, and `pnpm run check` verifies README, LICENSE, package metadata, generated `dist/`, and npm
+package contents.
 
 ## License
 
-[MPL-2.0](LICENSE)
+SPDX-License-Identifier: MPL-2.0
