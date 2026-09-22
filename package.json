@@ -1,6 +1,6 @@
 {
   "name": "@kubohiroya/turbowarp-text-lines",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Use multiline text in TurboWarp projects with line counting, lookup, and list-writing blocks.",
   "author": "Hiroya Kubo <hiroya@cuc.ac.jp>",
   "license": "MPL-2.0",
@@ -32,24 +32,25 @@
   },
   "packageManager": "pnpm@11.11.0",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.18.0"
   },
   "scripts": {
     "dev": "vite build --watch",
     "typecheck": "tsc --noEmit",
     "build": "vite build",
     "test": "vitest run",
-    "docs": "node scripts/generate-readme.mjs",
+    "docs": "node scripts/generate-readme.ts",
     "docs:check": "pnpm run docs && git diff --exit-code -- README.md",
     "check:dist": "pnpm run build && git diff --exit-code -- dist",
-    "repo:check": "node scripts/check-repo.mjs",
+    "repo:check": "node scripts/check-repo.ts",
     "pack:check": "npm pack --dry-run --ignore-scripts",
     "check": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run docs:check && pnpm run check:dist && pnpm run repo:check && pnpm run pack:check"
   },
   "devDependencies": {
-    "@kubohiroya/vite-plugin-turbowarp-extension": "0.1.0",
+    "@kubohiroya/vite-plugin-turbowarp-extension": "0.4.0",
+    "@types/node": "^22.20.1",
     "typescript": "^5.9.3",
-    "vite": "^7.3.6",
+    "vite": "^8.2.2",
     "vitest": "^4.1.10"
   }
 }
