@@ -1,3 +1,4 @@
+import {fixedInputRegistration} from './fixed-input-editors.js';
 import definitions from './block-definitions.json' with {type: 'json'};
 
 type BlockTypeName = 'COMMAND' | 'REPORTER';
@@ -20,7 +21,12 @@ interface BlockDefinition {
 const blockDefinitions = definitions.blocks as readonly BlockDefinition[];
 
 export class TextLinesExtension {
+  private readonly fixedInputs = fixedInputRegistration(typeof Scratch === 'undefined' ? undefined : Scratch);
+
+  public dispose(): void {this.fixedInputs.dispose();}
+
   getInfo() {
+    this.fixedInputs.ensure(blockDefinitions.map(block => `kubohiroyatextlines_${block.opcode}`));
     const translate = Scratch.translate;
     return {
       id: 'kubohiroyatextlines',

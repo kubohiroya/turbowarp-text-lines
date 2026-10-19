@@ -1,0 +1,61 @@
+[
+  {
+    "id": "native-default",
+    "values": {},
+    "getInfo": {
+      "id": "kubohiroyatextlines",
+      "name": "Text Lines",
+      "docsURI": "https://kubohiroya.github.io/turbowarp-text-lines/",
+      "color1": "#5B80A5",
+      "blocks": [
+        {
+          "opcode": "lineCount",
+          "blockType": "reporter",
+          "text": "number of lines in [TEXT]",
+          "arguments": {
+            "TEXT": {
+              "type": "string",
+              "defaultValue": "first line\nsecond line"
+            }
+          }
+        },
+        {
+          "opcode": "lineAt",
+          "blockType": "reporter",
+          "text": "line [LINE] of [TEXT]",
+          "arguments": {
+            "TEXT": {
+              "type": "string",
+              "defaultValue": "first line\nsecond line"
+            },
+            "LINE": {
+              "type": "number",
+              "defaultValue": 1
+            }
+          }
+        },
+        {
+          "opcode": "writeLinesToList",
+          "blockType": "command",
+          "text": "put lines of [TEXT] into list [LIST]",
+          "arguments": {
+            "TEXT": {
+              "type": "string",
+              "defaultValue": "first line\nsecond line"
+            },
+            "LIST": {
+              "type": "string",
+              "menu": "LIST_MENU"
+            }
+          }
+        }
+      ],
+      "menus": {
+        "LIST_MENU": {
+          "acceptReporters": true,
+          "items": "getLists"
+        }
+      }
+    }
+  }
+]
