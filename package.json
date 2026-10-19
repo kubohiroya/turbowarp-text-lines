@@ -24,7 +24,9 @@
   "files": [
     "dist/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "schemas/",
+    "docs/fixed-input-editors.ja.md"
   ],
   "publishConfig": {
     "access": "public",
@@ -51,6 +53,7 @@
     "@types/node": "^22.20.1",
     "typescript": "^5.9.3",
     "vite": "^8.2.2",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "@kubohiroya/turbowarp-extension-data-editor": "github:kubohiroya/turbowarp-extension-data-editor#485f0e550e622235624b5e9176820161aeeba252"
   }
 }

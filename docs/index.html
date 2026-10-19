@@ -105,7 +105,7 @@ Cherry</pre>
           <h2>Choose the result you need</h2>
         </div>
         <div class="block-grid">
-          <article class="block-card">
+          <article class="block-card" id="block-lineCount">
             <div class="scratch-block reporter">number of lines in <span class="argument">text</span></div>
             <div class="block-copy">
               <h3>Count lines</h3>
@@ -113,15 +113,16 @@ Cherry</pre>
               <ul><li>A blank input is one empty line.</li><li>A final line ending adds an empty last line.</li></ul>
             </div>
           </article>
-          <article class="block-card">
+          <article class="block-card" id="block-lineAt">
             <div class="scratch-block reporter">line <span class="argument">1</span> of <span class="argument">text</span></div>
             <div class="block-copy">
               <h3>Read one line</h3>
               <p>Returns the line at the requested position.</p>
               <ul><li>Line numbering starts at 1.</li><li>Invalid line numbers return an empty string.</li></ul>
             </div>
-          </article>
-          <article class="block-card">
+          <p lang="ja" class="fixed-input-help"><a href="#fixed-input-editors">このブロックの固定入力編集と互換性</a></p>
+</article>
+          <article class="block-card" id="block-writeLinesToList">
             <div class="scratch-block">put lines of <span class="argument">text</span> into list <span class="argument">list</span></div>
             <div class="block-copy">
               <h3>Fill a list</h3>
@@ -155,5 +156,6 @@ Cherry</pre>
       <p>Text Lines for TurboWarp</p>
       <p><a href="https://github.com/kubohiroya/turbowarp-text-lines">Source code and license</a></p>
     </footer>
-  </body>
+  <section lang="ja" id="fixed-input-editors"><h2>固定入力の編集</h2><p>対応GUIの固定入力機能は既定OFFです。既存値は開いただけでは変更せず、reporter接続は評価・置換しません。新しい選択と有限JSON数値入力のみを検証して保存し、既存の補正・丸め処理を維持します。機能OFFで従来の編集へ戻せます。</p><p><a href="fixed-input-editors.ja.md">対象入力・Schemaの正本・互換性・切戻し</a></p></section>
+</body>
 </html>
