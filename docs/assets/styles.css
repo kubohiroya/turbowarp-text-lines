@@ -489,3 +489,13 @@ h1 {
     scroll-behavior: auto;
   }
 }
+
+:root{color-scheme:light dark}
+@media (prefers-color-scheme:dark){
+  :root{
+    --ink:#e7eaf2;--muted:#9aa6b8;--paper:#0f1216;--surface:#171b21;--line:#2a313b;
+    --extension:#7fa8cc;--extension-dark:#5b80a5;--extension-soft:#1a242e;
+    --list:#ff9c3d;--list-dark:#d96f00;
+    --shadow:0 18px 45px rgba(0,0,0,.5);
+  }
+}
