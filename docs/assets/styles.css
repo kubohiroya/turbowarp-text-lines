@@ -499,3 +499,16 @@ h1 {
     --shadow:0 18px 45px rgba(0,0,0,.5);
   }
 }
+
+:root{color-scheme:light dark}
+@media (prefers-color-scheme:dark){
+  .site-header{border-bottom-color:rgba(42,49,59,.9);background:rgba(15,18,22,.92)}
+  .diagram-input{background:#1a1f26}
+  .text-sample{border-color:#2a313b;background:#171b21}
+  .argument{background:#171b21}
+  .result{border-color:#2a313b}
+  .list-result{border-color:#5a3d1a;background:#2a1e10}
+  .diagram figcaption{background:#141821}
+  .callout{background:#2a1e10}
+  .callout strong{color:#f0b26a}
+}
