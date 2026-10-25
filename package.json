@@ -49,12 +49,12 @@
     "check": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run docs:check && pnpm run check:dist && pnpm run repo:check && pnpm run pack:check"
   },
   "devDependencies": {
-    "@kubohiroya/vite-plugin-turbowarp-extension": "0.6.1",
+    "@kubohiroya/vite-plugin-turbowarp-extension": "^0.6.1",
     "@types/node": "^22.20.1",
     "typescript": "^5.9.3",
     "vite": "^8.2.2",
     "vitest": "^4.1.10",
-    "@kubohiroya/turbowarp-extension-data-editor": "0.2.1"
+    "@kubohiroya/turbowarp-extension-data-editor": "^0.2.1"
   },
   "gitHead": "6c59c2dd0cc4634192a4e5c210fe4e09e4b8a0be",
   "x-turbowarp-source": {
