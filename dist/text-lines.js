@@ -299,6 +299,7 @@
   }
   //#endregion
   //#region src/extension.ts
+  var BLOCK_ICON_URI = `data:image/svg+xml,${encodeURIComponent("<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\"><g fill=\"#4C97FF\"><circle cx=\"11\" cy=\"16\" r=\"2.6\"/><circle cx=\"11\" cy=\"24\" r=\"2.6\"/><circle cx=\"11\" cy=\"32\" r=\"2.6\"/></g><path d=\"M19 16h20M19 24h20M19 32h13\" fill=\"none\" stroke=\"#59C059\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>")}`;
   var blockDefinitions = block_definitions_default.blocks;
   var TextLinesExtension = class {
   	constructor() {
@@ -314,6 +315,7 @@
   			id: "kubohiroyatextlines",
   			name: translate(block_definitions_default.extensionName),
   			docsURI: "https://kubohiroya.github.io/turbowarp-text-lines/",
+  			blockIconURI: BLOCK_ICON_URI,
   			color1: "#5B80A5",
   			blocks: blockDefinitions.map((block) => this.toScratchBlock(block)),
   			menus: { LIST_MENU: {

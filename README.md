@@ -1,5 +1,7 @@
 # TurboWarp-Text-Lines
 
+<img src="assets/block-icon.svg" alt="" width="48" height="48">
+
 [日本語](README.ja.md)
 
 Use multiline text in TurboWarp projects. Text Lines adds three blocks that can:
