@@ -1,5 +1,7 @@
 # TurboWarp-Text-Lines
 
+[日本語](README.ja.md)
+
 Use multiline text in TurboWarp projects. Text Lines adds three blocks that can:
 
 - count the lines in some text;
