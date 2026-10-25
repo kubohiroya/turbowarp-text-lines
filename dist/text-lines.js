@@ -21,7 +21,7 @@
   	blockIconURI: `data:image/svg+xml,${encodeURIComponent("<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\"><g fill=\"#4C97FF\"><circle cx=\"11\" cy=\"16\" r=\"2.6\"/><circle cx=\"11\" cy=\"24\" r=\"2.6\"/><circle cx=\"11\" cy=\"32\" r=\"2.6\"/></g><path d=\"M19 16h20M19 24h20M19 32h13\" fill=\"none\" stroke=\"#59C059\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>")}`
   };
   //#endregion
-  //#region node_modules/.pnpm/@kubohiroya+turbowarp-extension-data-editor@0.2.1_react@18.3.1/node_modules/@kubohiroya/turbowarp-extension-data-editor/dist/fixed-input-schema.js
+  //#region node_modules/.pnpm/@kubohiroya+turbowarp-extension-data-editor@0.3.3_react@18.3.1/node_modules/@kubohiroya/turbowarp-extension-data-editor/dist/fixed-input-schema.js
   var numberToken = /^-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?$/u;
   var invalidNumber = Object.freeze({
   	kind: "invalid",
