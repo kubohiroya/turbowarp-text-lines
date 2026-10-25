@@ -7,6 +7,20 @@
 (function (Scratch) {
   'use strict';
 
+  //#region src/config.ts
+  var extensionConfig = {
+  	id: "kubohiroyatextlines",
+  	slug: "text-lines",
+  	name: "Text Lines",
+  	description: "Count, read, and split text by lines in TurboWarp.",
+  	author: "Hiroya Kubo",
+  	license: "MPL-2.0",
+  	unsandboxed: true,
+  	docsURI: "https://kubohiroya.github.io/turbowarp-text-lines/",
+  	color1: "#5B80A5",
+  	blockIconURI: `data:image/svg+xml,${encodeURIComponent("<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\"><g fill=\"#4C97FF\"><circle cx=\"11\" cy=\"16\" r=\"2.6\"/><circle cx=\"11\" cy=\"24\" r=\"2.6\"/><circle cx=\"11\" cy=\"32\" r=\"2.6\"/></g><path d=\"M19 16h20M19 24h20M19 32h13\" fill=\"none\" stroke=\"#59C059\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>")}`
+  };
+  //#endregion
   //#region node_modules/.pnpm/@kubohiroya+turbowarp-extension-data-editor@0.2.1_react@18.3.1/node_modules/@kubohiroya/turbowarp-extension-data-editor/dist/fixed-input-schema.js
   var numberToken = /^-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?$/u;
   var invalidNumber = Object.freeze({
@@ -299,7 +313,7 @@
   }
   //#endregion
   //#region src/extension.ts
-  var BLOCK_ICON_URI = `data:image/svg+xml,${encodeURIComponent("<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\"><g fill=\"#4C97FF\"><circle cx=\"11\" cy=\"16\" r=\"2.6\"/><circle cx=\"11\" cy=\"24\" r=\"2.6\"/><circle cx=\"11\" cy=\"32\" r=\"2.6\"/></g><path d=\"M19 16h20M19 24h20M19 32h13\" fill=\"none\" stroke=\"#59C059\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>")}`;
+  var BLOCK_ICON_URI = extensionConfig.blockIconURI;
   var blockDefinitions = block_definitions_default.blocks;
   var TextLinesExtension = class {
   	constructor() {
@@ -309,14 +323,14 @@
   		this.fixedInputs.dispose();
   	}
   	getInfo() {
-  		this.fixedInputs.ensure(blockDefinitions.map((block) => `kubohiroyatextlines_${block.opcode}`));
+  		this.fixedInputs.ensure(blockDefinitions.map((block) => `${extensionConfig.id}_${block.opcode}`));
   		const translate = Scratch.translate;
   		return {
-  			id: "kubohiroyatextlines",
+  			id: extensionConfig.id,
   			name: translate(block_definitions_default.extensionName),
-  			docsURI: "https://kubohiroya.github.io/turbowarp-text-lines/",
+  			docsURI: extensionConfig.docsURI,
   			blockIconURI: BLOCK_ICON_URI,
-  			color1: "#5B80A5",
+  			color1: extensionConfig.color1,
   			blocks: blockDefinitions.map((block) => this.toScratchBlock(block)),
   			menus: { LIST_MENU: {
   				acceptReporters: true,
@@ -369,7 +383,7 @@
   }
   //#endregion
   //#region src/index.ts
-  if (!Scratch.extensions.unsandboxed) throw new Error("Text Lines must run unsandboxed to write to Scratch lists.");
+  if (extensionConfig.unsandboxed && !Scratch.extensions.unsandboxed) throw new Error(`${extensionConfig.name} must run unsandboxed to write to Scratch lists.`);
   Scratch.extensions.register(new TextLinesExtension());
   //#endregion
 

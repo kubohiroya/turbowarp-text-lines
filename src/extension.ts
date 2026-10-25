@@ -1,3 +1,4 @@
+import {extensionConfig} from './config.js';
 import {fixedInputRegistration} from './fixed-input-editors.js';
 import definitions from './block-definitions.json' with {type: 'json'};
 
@@ -18,9 +19,7 @@ interface BlockDefinition {
   arguments: Record<string, DefinitionArgument>;
 }
 
-export const BLOCK_ICON_URI = `data:image/svg+xml,${encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><g fill="#4C97FF"><circle cx="11" cy="16" r="2.6"/><circle cx="11" cy="24" r="2.6"/><circle cx="11" cy="32" r="2.6"/></g><path d="M19 16h20M19 24h20M19 32h13" fill="none" stroke="#59C059" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-)}`;
+export const BLOCK_ICON_URI = extensionConfig.blockIconURI;
 
 const blockDefinitions = definitions.blocks as readonly BlockDefinition[];
 
@@ -30,14 +29,14 @@ export class TextLinesExtension {
   public dispose(): void {this.fixedInputs.dispose();}
 
   getInfo() {
-    this.fixedInputs.ensure(blockDefinitions.map(block => `kubohiroyatextlines_${block.opcode}`));
+    this.fixedInputs.ensure(blockDefinitions.map(block => `${extensionConfig.id}_${block.opcode}`));
     const translate = Scratch.translate;
     return {
-      id: 'kubohiroyatextlines',
+      id: extensionConfig.id,
       name: translate(definitions.extensionName),
-      docsURI: 'https://kubohiroya.github.io/turbowarp-text-lines/',
+      docsURI: extensionConfig.docsURI,
       blockIconURI: BLOCK_ICON_URI,
-      color1: '#5B80A5',
+      color1: extensionConfig.color1,
       blocks: blockDefinitions.map((block) => this.toScratchBlock(block)),
       menus: {
         LIST_MENU: {

@@ -61,7 +61,7 @@ const packageMetadata = JSON.parse(await readFile('package.json', 'utf8')) as Pa
 const policy = JSON.parse(await readFile('repo-policy.json', 'utf8')) as RepoPolicy;
 const readme = await readFile('README.md', 'utf8');
 const license = await readFile('LICENSE', 'utf8');
-const viteConfig = await readFile('vite.config.ts', 'utf8');
+const extensionConfigSource = await readFile('src/config.ts', 'utf8');
 const bundle = await readFile(policy.extension.bundle, 'utf8');
 
 checkPolicy();
@@ -146,8 +146,9 @@ function checkLicense() {
 }
 
 function checkBundleMetadata() {
-  if (!viteConfig.includes("license: 'MPL-2.0'")) {
-    errors.push('vite.config.ts must use MPL-2.0 extension metadata');
+  // src/config.ts is the one source for this metadata; vite.config.ts reads it.
+  if (!extensionConfigSource.includes("license: 'MPL-2.0'")) {
+    errors.push('src/config.ts must use MPL-2.0 extension metadata');
   }
   for (const line of [
     '// Name: Text Lines',
