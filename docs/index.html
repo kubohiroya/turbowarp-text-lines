@@ -11,7 +11,16 @@
     <link rel="alternate" hreflang="en" href="https://kubohiroya.github.io/turbowarp-text-lines/">
     <link rel="alternate" hreflang="ja" href="https://kubohiroya.github.io/turbowarp-text-lines/ja/">
     <link rel="alternate" hreflang="x-default" href="https://kubohiroya.github.io/turbowarp-text-lines/">
-  </head>
+  <style id="block-reference-style">
+#extension-block-reference{max-width:72rem;margin:2rem auto;padding:1rem;line-height:1.6;overflow-wrap:anywhere}
+#extension-block-reference .block-reference-entry{display:block;scroll-margin-top:6rem;margin:2rem 0;padding:1rem;border:1px solid currentColor;border-radius:.5rem}
+#extension-block-reference .block-reference-table{overflow-x:auto}
+#extension-block-reference table{border-collapse:collapse;width:100%}
+#extension-block-reference th,#extension-block-reference td{text-align:left;vertical-align:top;border:1px solid currentColor;padding:.5rem}
+#extension-block-reference code{white-space:pre-wrap}
+#extension-block-reference a:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+</style>
+</head>
   <body>
     <header class="site-header">
       <div class="appbar">
@@ -23,15 +32,10 @@
           <a href="#start">Get started</a>
           <a href="#blocks">Blocks</a>
         </nav>
-        <a class="github-link" href="https://github.com/kubohiroya/turbowarp-text-lines">GitHub</a>
-        <nav class="language-switch" aria-label="Language">
-          <a href="./" lang="en" hreflang="en" aria-current="page">English</a>
-          <a href="ja/" lang="ja" hreflang="ja">日本語</a>
-        </nav>
       </div>
     </header>
 
-    <main id="top">
+    <main id="top"><p lang="en" class="complete-block-reference-link"><a href="#extension-block-reference">Complete block reference (3 blocks)</a></p>
       <section class="hero">
         <p class="eyebrow">TurboWarp extension guide</p>
         <h1>Turn text into lines.</h1>
@@ -155,5 +159,25 @@ Cherry</pre>
       <p>Text Lines for TurboWarp</p>
       <p><a href="https://github.com/kubohiroya/turbowarp-text-lines">Source code and license</a></p>
     </footer>
-  </body>
+  <!-- BEGIN COMPLETE BLOCK REFERENCE -->
+<section lang="en" id="extension-block-reference" aria-labelledby="block-reference-title">
+<h2 id="block-reference-title">Text Lines: complete block reference</h2>
+<p>All 3 blocks are documented below, including compatibility blocks and blocks available through optional features. Select a block to read its behavior, arguments, default values, and menu choices. Each block has a permanent link.</p>
+<nav aria-label="Block reference"><ul><li><a href="#block-lineCount"><code>number of lines in [TEXT]</code></a></li>
+<li><a href="#block-lineAt"><code>line [LINE] of [TEXT]</code></a></li>
+<li><a href="#block-writeLinesToList"><code>put lines of [TEXT] into list [LIST]</code></a></li>
+</ul></nav>
+<article id="block-lineCount" class="block-reference-entry"><h3><code>number of lines in [TEXT]</code></h3><p>Returns the number of lines in the supplied text.</p><p>Block type: REPORTER. Opcode: <code>lineCount</code>. <a href="#block-lineCount">Permanent link</a></p><div class="block-reference-table"><table><thead><tr><th>Argument</th><th>Type</th><th>Default value</th><th>Menu choices</th></tr></thead><tbody><tr><th scope="row"><code>TEXT</code></th><td>STRING</td><td><code>first line
+second line</code></td><td></td></tr></tbody></table></div></article><article id="block-lineAt" class="block-reference-entry"><h3><code>line [LINE] of [TEXT]</code></h3><p>Returns one line using a one-based line number. Invalid line numbers return an empty string.</p><p>Block type: REPORTER. Opcode: <code>lineAt</code>. <a href="#block-lineAt">Permanent link</a></p><div class="block-reference-table"><table><thead><tr><th>Argument</th><th>Type</th><th>Default value</th><th>Menu choices</th></tr></thead><tbody><tr><th scope="row"><code>TEXT</code></th><td>STRING</td><td><code>first line
+second line</code></td><td></td></tr><tr><th scope="row"><code>LINE</code></th><td>NUMBER</td><td><code>1</code></td><td></td></tr></tbody></table></div><p lang="ja" class="fixed-input-help"><a href="#fixed-input-editors">このブロックの固定入力編集と互換性</a></p></article><article id="block-writeLinesToList" class="block-reference-entry"><h3><code>put lines of [TEXT] into list [LIST]</code></h3><p>Replaces the contents of the named Scratch list with the lines of the supplied text.</p><p>Block type: COMMAND. Opcode: <code>writeLinesToList</code>. <a href="#block-writeLinesToList">Permanent link</a></p><div class="block-reference-table"><table><thead><tr><th>Argument</th><th>Type</th><th>Default value</th><th>Menu choices</th></tr></thead><tbody><tr><th scope="row"><code>TEXT</code></th><td>STRING</td><td><code>first line
+second line</code></td><td></td></tr><tr><th scope="row"><code>LIST</code></th><td>STRING</td><td>Not specified</td><td></td></tr></tbody></table></div></article>
+<p><a href="https://github.com/kubohiroya/turbowarp-text-lines/blob/main/README.md">Repository guide and examples</a></p>
+</section>
+<!-- END COMPLETE BLOCK REFERENCE -->
+<section lang="ja" id="fixed-input-editors"><h2>固定入力の編集</h2><p>対応GUIの固定入力機能は既定OFFです。既存値は開いただけでは変更せず、reporter接続は評価・置換しません。新しい選択と有限JSON数値入力のみを検証して保存し、既存の補正・丸め処理を維持します。機能OFFで従来の編集へ戻せます。</p><p><a href="fixed-input-editors.ja.md">対象入力・Schemaの正本・互換性・切戻し</a></p></section>
+<!-- The shared TurboWarp Plus header. It inserts itself at the top of the
+     page in a shadow root, so it cannot disturb the styles below. -->
+<script type="module"
+        src="https://kubohiroya.github.io/turbowarp-plus-site-header/dist/auto.js"></script>
+</body>
 </html>

@@ -23,11 +23,6 @@
           <a href="#start">使い始める</a>
           <a href="#blocks">ブロック</a>
         </nav>
-        <a class="github-link" href="https://github.com/kubohiroya/turbowarp-text-lines">GitHub</a>
-        <nav class="language-switch" aria-label="言語">
-          <a href="../" lang="en" hreflang="en">English</a>
-          <a href="./" lang="ja" hreflang="ja" aria-current="page">日本語</a>
-        </nav>
       </div>
     </header>
 
@@ -106,7 +101,7 @@
           <p>ブロック名は、TurboWarp上で探しやすいように実際の英語表記で示しています。</p>
         </div>
         <div class="block-grid">
-          <article class="block-card">
+          <article class="block-card" id="block-lineCount">
             <div class="scratch-block reporter">number of lines in <span class="argument">テキスト</span></div>
             <div class="block-copy">
               <h3>行数を数える</h3>
@@ -114,7 +109,7 @@
               <ul><li>空の入力は、空の1行として数えます。</li><li>末尾の改行後には、空の最終行ができます。</li></ul>
             </div>
           </article>
-          <article class="block-card">
+          <article class="block-card" id="block-lineAt">
             <div class="scratch-block reporter">line <span class="argument">1</span> of <span class="argument">テキスト</span></div>
             <div class="block-copy">
               <h3>1行を取り出す</h3>
@@ -122,7 +117,7 @@
               <ul><li>行番号は1から始まります。</li><li>無効な行番号では空文字列を返します。</li></ul>
             </div>
           </article>
-          <article class="block-card">
+          <article class="block-card" id="block-writeLinesToList">
             <div class="scratch-block">put lines of <span class="argument">テキスト</span> into list <span class="argument">リスト</span></div>
             <div class="block-copy">
               <h3>リストへ入れる</h3>
@@ -156,5 +151,9 @@
       <p>TurboWarp用 Text Lines</p>
       <p><a href="https://github.com/kubohiroya/turbowarp-text-lines">ソースコードとライセンス</a></p>
     </footer>
+  <!-- The shared TurboWarp Plus header. It inserts itself at the top of the
+       page in a shadow root, so it cannot disturb the styles below. -->
+  <script type="module"
+          src="https://kubohiroya.github.io/turbowarp-plus-site-header/dist/auto.js"></script>
   </body>
 </html>

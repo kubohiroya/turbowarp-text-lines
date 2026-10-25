@@ -1,5 +1,9 @@
 # TurboWarp-Text-Lines
 
+<img src="assets/block-icon.svg" alt="" width="48" height="48">
+
+[日本語](README.ja.md)
+
 Use multiline text in TurboWarp projects. Text Lines adds three blocks that can:
 
 - count the lines in some text;
@@ -161,3 +165,5 @@ package contents.
 ## License
 
 SPDX-License-Identifier: MPL-2.0
+
+固定入力の編集範囲・互換性・切戻しについては [固定入力の編集](docs/fixed-input-editors.ja.md) を参照してください。
