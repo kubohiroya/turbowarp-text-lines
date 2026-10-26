@@ -90,9 +90,10 @@ flowchart TD
 
 ## 開発
 
-Node.js 22以降で依存関係をインストールし、すべての検査を実行します。
+Node.js 24以降で依存関係をインストールし、すべての検査を実行します。
 
 ```bash
+npm install --global corepack@latest
 corepack enable
 pnpm install --frozen-lockfile
 pnpm run check

@@ -84,7 +84,7 @@ function checkPolicy() {
   }
   if (policy.licensePolicy !== 'mpl-2.0') errors.push('repo-policy.json licensePolicy must be mpl-2.0');
   if (policy.packageManager !== 'pnpm') errors.push('repo-policy.json packageManager must be pnpm');
-  if (policy.node?.minimum !== '22') errors.push('repo-policy.json node.minimum must be 22');
+  if (policy.node?.minimum !== '24') errors.push('repo-policy.json node.minimum must be 24');
   if (policy.publishedLicenseDecision?.license !== 'MPL-2.0') {
     errors.push('repo-policy.json must record MPL-2.0 as the forward license decision');
   }
@@ -102,8 +102,8 @@ function checkPackageMetadata() {
   if (!packageMetadata.packageManager?.startsWith('pnpm@')) {
     errors.push('package.json packageManager must pin pnpm exactly');
   }
-  if (packageMetadata.engines?.node !== '>=22.18.0') {
-    errors.push('package.json engines.node must be >=22.18.0');
+  if (packageMetadata.engines?.node !== '>=24') {
+    errors.push('package.json engines.node must be >=24');
   }
   if (packageMetadata.repository?.url !== 'git+https://github.com/kubohiroya/turbowarp-text-lines.git') {
     errors.push('package.json repository.url must point to the current repository');
@@ -125,7 +125,7 @@ function checkReadme() {
   if (!readme.includes('SPDX-License-Identifier: MPL-2.0')) {
     errors.push('README.md License section must include the SPDX identifier');
   }
-  if (!readme.includes('Node.js 22') || !readme.includes('pnpm')) {
+  if (!readme.includes('Node.js 24') || !readme.includes('pnpm')) {
     errors.push('README.md Development section must document the Node/pnpm baseline');
   }
   if ((readme.match(/<!-- BEGIN GENERATED BLOCKS -->/g) ?? []).length !== 1) {
