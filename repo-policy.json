@@ -5,7 +5,7 @@
   "licensePolicy": "mpl-2.0",
   "packageManager": "pnpm",
   "node": {
-    "minimum": "22"
+    "minimum": "24"
   },
   "extension": {
     "id": "kubohiroyatextlines",

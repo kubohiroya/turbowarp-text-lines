@@ -131,9 +131,10 @@ For illustrated examples and the Japanese version, open the [complete user guide
 
 ## Development
 
-Install dependencies with Node.js 22 or later and run every check:
+Install dependencies with Node.js 24 or later and run every check:
 
 ```bash
+npm install --global corepack@latest
 corepack enable
 pnpm install --frozen-lockfile
 pnpm run check
