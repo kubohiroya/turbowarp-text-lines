@@ -16,12 +16,30 @@ Use multiline text in TurboWarp projects. Text Lines adds three blocks that can:
 
 1. Download [`dist/text-lines.js`](dist/text-lines.js?raw=1).
 2. In **TurboWarp Desktop**, open **Extensions**, choose **Custom Extension**, and load the downloaded file.
-3. Enable **Run extension without sandbox** when TurboWarp asks.
+3. Enable **Run without sandbox** when TurboWarp asks.
 
 > [!IMPORTANT]
 > Text Lines needs to run without the sandbox because its command block writes directly to Scratch lists.
 
 The ready-to-use JavaScript file is committed to this repository. You do not need Node.js to install the extension.
+
+## Runnable sample
+
+[**Open Lines to List in TurboWarp Editor**](https://turbowarp.org/editor?project_url=https%3A%2F%2Fkubohiroya.github.io%2Fturbowarp-text-lines%2Fsamples%2Flines-to-list.sb3) · [Download the SB3](https://kubohiroya.github.io/turbowarp-text-lines/samples/lines-to-list.sb3)
+
+Allow the custom extension to load, choose **Run without sandbox**, and
+click the green flag. The stage shows **Line count: 3**, **Second line: Banana**,
+and a **Lines** list containing Apple, Banana, and Cherry. Running it again replaces
+the list. The sample uses all three Text Lines blocks and no other extensions.
+
+The SB3 includes the tested Text Lines JavaScript so TurboWarp can offer the
+unsandboxed permission checkbox. Reopening the downloaded SB3 needs no extra JS download.
+Edit the first `set Input text` block to try other text.
+
+Sources: [`samples/lines-to-list/project.json`](samples/lines-to-list/project.json).
+Rebuild with `pnpm run samples:build`; check committed archives with
+`pnpm run samples:check`. `pnpm run pages:build` stages documentation, `dist/`, and
+samples under `_site/` for GitHub Pages. See [sample maintenance](samples/README.md).
 
 ## See it in action
 
