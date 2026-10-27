@@ -1,6 +1,6 @@
 {
   "name": "@kubohiroya/turbowarp-text-lines",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Use multiline text in TurboWarp projects with line counting, lookup, and list-writing blocks.",
   "author": "Hiroya Kubo <hiroya@cuc.ac.jp>",
   "license": "MPL-2.0",
@@ -50,16 +50,16 @@
     "check": "pnpm run typecheck && pnpm run test && pnpm run build && pnpm run docs:check && pnpm run check:dist && pnpm run repo:check && pnpm run pack:check"
   },
   "devDependencies": {
-    "@kubohiroya/vite-plugin-turbowarp-extension": "^0.8.0",
+    "@kubohiroya/vite-plugin-turbowarp-extension": "^0.9.0",
     "@types/node": "^22.20.1",
     "typescript": "^5.9.3",
     "vite": "^8.2.2",
     "vitest": "^4.1.10",
-    "@kubohiroya/turbowarp-extension-data-editor": "^0.3.4"
+    "@kubohiroya/turbowarp-extension-data-editor": "^0.4.0"
   },
-  "gitHead": "f43722feb24d4d2169953ee44c640a3dc44532fd",
+  "gitHead": "86365d0f44d92bcf6ad828be8d165e4852abd7f4",
   "x-turbowarp-source": {
-    "revision": "f43722feb24d4d2169953ee44c640a3dc44532fd",
+    "revision": "86365d0f44d92bcf6ad828be8d165e4852abd7f4",
     "revisionRole": "base-commit",
     "sourceState": "local-release-overlay"
   }
