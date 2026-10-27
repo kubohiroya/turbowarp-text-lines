@@ -1,0 +1,19 @@
+{
+  "baseURL": "https://kubohiroya.github.io/turbowarp-text-lines/",
+  "extension": {
+    "id": "kubohiroyatextlines",
+    "bundle": "dist/text-lines.js",
+    "unsandboxed": true
+  },
+  "samples": [
+    {
+      "name": "lines-to-list",
+      "title": "Count, read, and list three lines",
+      "expected": {
+        "line-count": 3,
+        "second-line": "Banana",
+        "fruit-list": ["Apple", "Banana", "Cherry"]
+      }
+    }
+  ]
+}

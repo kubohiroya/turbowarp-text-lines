@@ -23,6 +23,18 @@ TurboWarpのプロジェクトで複数行テキストを扱います。Text Lin
 
 そのまま使えるJavaScriptファイルをこのリポジトリにcommitしてあります。インストールにNode.jsは要りません。
 
+## 実行できるサンプル
+
+[**TurboWarp EditorでLines to Listを開く**](https://turbowarp.org/editor?project_url=https%3A%2F%2Fkubohiroya.github.io%2Fturbowarp-text-lines%2Fsamples%2Flines-to-list.sb3) · [SB3をダウンロード](https://kubohiroya.github.io/turbowarp-text-lines/samples/lines-to-list.sb3)
+
+拡張の確認画面で**Run without sandbox**を選んで**Allow**し、緑の旗を押します。
+行数`3`、2行目`Banana`、リスト`Apple, Banana, Cherry`を表示します。
+最初の`Input text`設定ブロックを編集して試せます。再実行時はリストを置き換えます。
+検証対象の拡張JSと背景をSB3へ同梱しており、追加のJS取得は不要です。
+
+元データは`samples/lines-to-list/`にあります。`pnpm run samples:build`で再生成し、
+`pnpm run samples:check`で更新漏れを検査します。[保守方法](samples/README.md)も参照してください。
+
 ## 動かしてみる
 
 次のテキストを入力とします。

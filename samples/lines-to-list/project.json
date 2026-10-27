@@ -1,0 +1,310 @@
+{
+  "targets": [
+    {
+      "isStage": true,
+      "name": "Stage",
+      "variables": {
+        "input-text": [
+          "Input text",
+          "Apple\nBanana\nCherry"
+        ],
+        "line-count": [
+          "Line count",
+          0
+        ],
+        "second-line": [
+          "Second line",
+          ""
+        ]
+      },
+      "lists": {
+        "fruit-list": [
+          "Lines",
+          []
+        ]
+      },
+      "broadcasts": {},
+      "blocks": {
+        "start": {
+          "opcode": "event_whenflagclicked",
+          "next": "input",
+          "parent": null,
+          "inputs": {},
+          "fields": {},
+          "shadow": false,
+          "topLevel": true,
+          "x": 40,
+          "y": 40
+        },
+        "count": {
+          "opcode": "data_setvariableto",
+          "next": "second",
+          "parent": "input",
+          "inputs": {
+            "VALUE": [
+              3,
+              "line-count-block",
+              [
+                10,
+                "0"
+              ]
+            ]
+          },
+          "fields": {
+            "VARIABLE": [
+              "Line count",
+              "line-count"
+            ]
+          },
+          "shadow": false,
+          "topLevel": false
+        },
+        "line-count-block": {
+          "opcode": "kubohiroyatextlines_lineCount",
+          "next": null,
+          "parent": "count",
+          "inputs": {
+            "TEXT": [
+              3,
+              "count-input",
+              [
+                10,
+                ""
+              ]
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "count-input": {
+          "opcode": "data_variable",
+          "next": null,
+          "parent": "line-count-block",
+          "inputs": {},
+          "fields": {
+            "VARIABLE": [
+              "Input text",
+              "input-text"
+            ]
+          },
+          "shadow": false,
+          "topLevel": false
+        },
+        "second": {
+          "opcode": "data_setvariableto",
+          "next": "list",
+          "parent": "count",
+          "inputs": {
+            "VALUE": [
+              3,
+              "second-line-block",
+              [
+                10,
+                ""
+              ]
+            ]
+          },
+          "fields": {
+            "VARIABLE": [
+              "Second line",
+              "second-line"
+            ]
+          },
+          "shadow": false,
+          "topLevel": false
+        },
+        "second-line-block": {
+          "opcode": "kubohiroyatextlines_lineAt",
+          "next": null,
+          "parent": "second",
+          "inputs": {
+            "TEXT": [
+              3,
+              "second-input",
+              [
+                10,
+                ""
+              ]
+            ],
+            "LINE": [
+              1,
+              [
+                4,
+                "2"
+              ]
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "second-input": {
+          "opcode": "data_variable",
+          "next": null,
+          "parent": "second-line-block",
+          "inputs": {},
+          "fields": {
+            "VARIABLE": [
+              "Input text",
+              "input-text"
+            ]
+          },
+          "shadow": false,
+          "topLevel": false
+        },
+        "list": {
+          "opcode": "kubohiroyatextlines_writeLinesToList",
+          "next": null,
+          "parent": "second",
+          "inputs": {
+            "TEXT": [
+              3,
+              "list-input",
+              [
+                10,
+                ""
+              ]
+            ],
+            "LIST": [
+              1,
+              "list-menu"
+            ]
+          },
+          "fields": {},
+          "shadow": false,
+          "topLevel": false
+        },
+        "list-input": {
+          "opcode": "data_variable",
+          "next": null,
+          "parent": "list",
+          "inputs": {},
+          "fields": {
+            "VARIABLE": [
+              "Input text",
+              "input-text"
+            ]
+          },
+          "shadow": false,
+          "topLevel": false
+        },
+        "input": {
+          "opcode": "data_setvariableto",
+          "next": "count",
+          "parent": "start",
+          "inputs": {
+            "VALUE": [
+              1,
+              [
+                10,
+                "Apple\nBanana\nCherry"
+              ]
+            ]
+          },
+          "fields": {
+            "VARIABLE": [
+              "Input text",
+              "input-text"
+            ]
+          },
+          "shadow": false,
+          "topLevel": false
+        },
+        "list-menu": {
+          "opcode": "kubohiroyatextlines_menu_LIST_MENU",
+          "next": null,
+          "parent": "list",
+          "inputs": {},
+          "fields": {
+            "LIST_MENU": [
+              "fruit-list",
+              null
+            ]
+          },
+          "shadow": true,
+          "topLevel": false
+        }
+      },
+      "comments": {},
+      "currentCostume": 0,
+      "costumes": [
+        {
+          "assetId": "",
+          "name": "Instructions",
+          "bitmapResolution": 1,
+          "md5ext": "backdrop.svg",
+          "dataFormat": "svg",
+          "rotationCenterX": 240,
+          "rotationCenterY": 180
+        }
+      ],
+      "sounds": [],
+      "volume": 100,
+      "layerOrder": 0,
+      "tempo": 60,
+      "videoTransparency": 50,
+      "videoState": "off",
+      "textToSpeechLanguage": null
+    }
+  ],
+  "monitors": [
+    {
+      "id": "line-count",
+      "mode": "default",
+      "opcode": "data_variable",
+      "params": {
+        "VARIABLE": "Line count"
+      },
+      "spriteName": null,
+      "value": 0,
+      "width": 0,
+      "height": 0,
+      "x": 20,
+      "y": 196,
+      "visible": true,
+      "sliderMin": 0,
+      "sliderMax": 100,
+      "isDiscrete": true
+    },
+    {
+      "id": "second-line",
+      "mode": "default",
+      "opcode": "data_variable",
+      "params": {
+        "VARIABLE": "Second line"
+      },
+      "spriteName": null,
+      "value": "",
+      "width": 0,
+      "height": 0,
+      "x": 20,
+      "y": 234,
+      "visible": true,
+      "sliderMin": 0,
+      "sliderMax": 100,
+      "isDiscrete": true
+    },
+    {
+      "id": "fruit-list",
+      "mode": "list",
+      "opcode": "data_listcontents",
+      "params": {
+        "LIST": "Lines"
+      },
+      "spriteName": null,
+      "value": [],
+      "width": 172,
+      "height": 204,
+      "x": 286,
+      "y": 112,
+      "visible": true
+    }
+  ],
+  "extensions": [],
+  "meta": {
+    "semver": "3.0.0",
+    "vm": "0.2.0",
+    "agent": "TurboWarp Plus sample projects"
+  }
+}

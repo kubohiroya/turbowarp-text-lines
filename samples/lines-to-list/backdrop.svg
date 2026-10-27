@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360">
+<rect width="480" height="360" fill="#f1f5f9"/>
+<g font-family="sans-serif" fill="#172b4d">
+<text x="20" y="36" font-size="24" font-weight="bold">Text Lines: three blocks</text>
+<text x="20" y="65" font-size="15">Click the green flag. Inspect the code to change the input.</text>
+<text x="20" y="102" font-size="16" font-weight="bold">Input text</text>
+<text x="28" y="128" font-size="18">Apple</text>
+<text x="28" y="151" font-size="18">Banana</text>
+<text x="28" y="174" font-size="18">Cherry</text>
+<text x="20" y="295" font-size="14">Expected: 3 lines and Banana.</text>
+<text x="20" y="316" font-size="14">List: Apple, Banana, Cherry.</text>
+<text x="20" y="337" font-size="12">Run again to replace the list. No other extensions needed.</text>
+</g></svg>
