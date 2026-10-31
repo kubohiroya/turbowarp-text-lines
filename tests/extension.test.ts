@@ -30,6 +30,7 @@ describe('TextLinesExtension', () => {
       blocks: [
         {},
         {},
+        {opcode: 'linesJson', blockType: 'reporter'},
         {arguments: {LIST: {type: 'string', menu: 'LIST_MENU'}}}
       ],
       menus: {LIST_MENU: {acceptReporters: true, items: 'getLists'}}
@@ -45,6 +46,17 @@ describe('TextLinesExtension', () => {
     const extension = new TextLinesExtension();
     expect(extension.lineAt({TEXT: 'a\nb', LINE: 2})).toBe('b');
     expect(extension.lineAt({TEXT: 'a\nb', LINE: 3})).toBe('');
+  });
+
+  it('returns the lines as a JSON array that matches the line count', () => {
+    const extension = new TextLinesExtension();
+    for (const text of ['Apple\nBanana\r\nCherry\r', '', 'a\n', 'say "hi"\\', '😀\n ']) {
+      const lines = JSON.parse(extension.linesJson({TEXT: text})) as string[];
+      expect(lines).toEqual(splitLines(text));
+      expect(lines.length).toBe(extension.lineCount({TEXT: text}));
+    }
+    expect(extension.linesJson({TEXT: ''})).toBe('[""]');
+    expect(extension.linesJson({TEXT: 'a\n'})).toBe('["a",""]');
   });
 
   it('replaces a Scratch list with lines', () => {

@@ -256,6 +256,16 @@ var block_definitions_default = {
 			}
 		},
 		{
+			"opcode": "linesJson",
+			"blockType": "REPORTER",
+			"text": "lines of [TEXT] as JSON",
+			"description": "Returns every line as a JSON array of strings, with as many items as the line count.",
+			"arguments": { "TEXT": {
+				"type": "STRING",
+				"defaultValue": "first line\nsecond line"
+			} }
+		},
+		{
 			"opcode": "writeLinesToList",
 			"blockType": "COMMAND",
 			"text": "put lines of [TEXT] into list [LIST]",
@@ -356,6 +366,9 @@ var TextLinesExtension = class {
 		const line = Math.trunc(Scratch.Cast.toNumber(args.LINE));
 		if (!Number.isFinite(line) || line < 1 || line > lines.length) return "";
 		return lines[line - 1] ?? "";
+	}
+	linesJson(args) {
+		return JSON.stringify(splitLines(Scratch.Cast.toString(args.TEXT)));
 	}
 	writeLinesToList(args, util) {
 		const listIdOrName = Scratch.Cast.toString(args.LIST);

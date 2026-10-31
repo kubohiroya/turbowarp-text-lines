@@ -70,6 +70,10 @@ export class TextLinesExtension {
     return lines[line - 1] ?? '';
   }
 
+  linesJson(args: {TEXT: unknown}): string {
+    return JSON.stringify(splitLines(Scratch.Cast.toString(args.TEXT)));
+  }
+
   writeLinesToList(args: {TEXT: unknown; LIST: unknown}, util: ScratchBlockUtility): void {
     const listIdOrName = Scratch.Cast.toString(args.LIST);
     const stage = Scratch.vm.runtime.getTargetForStage();

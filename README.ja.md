@@ -4,10 +4,11 @@
 
 [English](README.md) | 日本語
 
-TurboWarpのプロジェクトで複数行テキストを扱います。Text Linesは次の3つのblockを追加します。
+TurboWarpのプロジェクトで複数行テキストを扱います。Text Linesは次の4つのblockを追加します。
 
 - テキストの行数を数える。
 - 位置を指定して1行を取り出す。
+- 全行をJSON配列として取り出す。
 - テキストの全行でScratchのリストを置き換える。
 
 **ユーザーガイド:** [English](https://kubohiroya.github.io/turbowarp-text-lines/) · [日本語](https://kubohiroya.github.io/turbowarp-text-lines/ja/)
@@ -60,7 +61,7 @@ flowchart TD
     class count,line,list extension
 ```
 
-角の丸い2つのreporter blockは値を返します。command blockは選択したリストをその場で書き換えます。
+角の丸いreporter blockは値を返します。command blockは選択したリストをその場で書き換えます。
 
 ## ブロック
 
@@ -70,6 +71,7 @@ flowchart TD
 |---|---|---|
 | 全行を数える | `number of lines in [TEXT]` | `3` |
 | 1行を読む | `line [LINE] of [TEXT]`（行に`2`を指定） | `Banana` |
+| 全行をJSONで取り出す | `lines of [TEXT] as JSON` | `["Apple","Banana","Cherry"]` |
 | テキストをリストの項目にする | `put lines of [TEXT] into list [LIST]` | `Apple`、`Banana`、`Cherry` |
 
 ### block定義
@@ -80,6 +82,7 @@ flowchart TD
 |---|---|---|---|
 | `number of lines in [TEXT]` | Reporter | `lineCount` | 渡されたテキストの行数を返します。 |
 | `line [LINE] of [TEXT]` | Reporter | `lineAt` | 1始まりの行番号で1行を返します。範囲外の行番号は空文字列を返します。 |
+| `lines of [TEXT] as JSON` | Reporter | `linesJson` | 全行を文字列のJSON配列で返します。項目数は行数と常に一致します。 |
 | `put lines of [TEXT] into list [LIST]` | Command | `writeLinesToList` | 指定したScratchリストの内容を、渡されたテキストの各行で置き換えます。 |
 
 `TEXT`の既定値は`first line\nsecond line`、`LINE`の既定値は`1`、`LIST`は`LIST_MENU`から選びます。
@@ -93,10 +96,24 @@ flowchart TD
 | 空のテキスト | 空行1行として扱います |
 | 改行で終わるテキスト | 末尾に空行を1つ加えます |
 | リストのcommand | 選択したリストの既存項目をすべて置き換えます |
+| JSONのblock | 他のblockと同じ規則で分割するため、配列の項目数は`number of lines in [TEXT]`と常に一致します |
 | 改行コード | LF（`\n`）、CRLF（`\r\n`）、CR（`\r`）を受け付けます |
 
 > [!WARNING]
 > リストのcommandを実行する前に、残したい内容は控えておいてください。
+
+## TurboWarp Structured Dataと組み合わせる
+
+`lines of [TEXT] as JSON`の結果は、[TurboWarp Structured Data](https://github.com/kubohiroya/turbowarp-structured-data)がそのまま読めるJSONです。
+Structured Dataの`for each`で行を順に処理できます。
+
+```text
+parse JSON (lines of [TEXT] as JSON) as [lines]
+for each in [lines] at path [$] max [100]
+```
+
+1回のloopで扱えるのは1,000件まで、Structured Dataが受け付けるJSONは256 KiBまでです。それより長いテキストは、
+`put lines of [TEXT] into list [LIST]`でリストへ入れ、Scratchのリストのblockで扱ってください。
 
 図入りの例と日本語版は[ユーザーガイド](https://kubohiroya.github.io/turbowarp-text-lines/)にあります。
 
