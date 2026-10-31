@@ -4,10 +4,11 @@
 
 English | [日本語](README.ja.md)
 
-Use multiline text in TurboWarp projects. Text Lines adds three blocks that can:
+Use multiline text in TurboWarp projects. Text Lines adds four blocks that can:
 
 - count the lines in some text;
-- return one line by its position; and
+- return one line by its position;
+- return every line as a JSON array; and
 - replace a Scratch list with every line from the text.
 
 **User guide:** [English](https://kubohiroya.github.io/turbowarp-text-lines/) · [日本語](https://kubohiroya.github.io/turbowarp-text-lines/ja/)
@@ -30,7 +31,7 @@ The ready-to-use JavaScript file is committed to this repository. You do not nee
 Allow the custom extension to load, choose **Run without sandbox**, and
 click the green flag. The stage shows **Line count: 3**, **Second line: Banana**,
 and a **Lines** list containing Apple, Banana, and Cherry. Running it again replaces
-the list. The sample uses all three Text Lines blocks and no other extensions.
+the list. The sample uses three Text Lines blocks and no other extensions.
 
 The SB3 includes the tested Text Lines JavaScript so TurboWarp can offer the
 unsandboxed permission checkbox. Reopening the downloaded SB3 needs no extra JS download.
@@ -66,7 +67,7 @@ flowchart TD
     class count,line,list extension
 ```
 
-The two rounded reporter blocks return a value. The command block changes the selected list immediately.
+The rounded reporter blocks return a value. The command block changes the selected list immediately.
 
 ## Block reference
 
@@ -76,6 +77,7 @@ The two rounded reporter blocks return a value. The command block changes the se
 |---|---|---|
 | Count all lines | `number of lines in [TEXT]` | `3` |
 | Read one line | `line [LINE] of [TEXT]` with line `2` | `Banana` |
+| Get every line as JSON | `lines of [TEXT] as JSON` | `["Apple","Banana","Cherry"]` |
 | Turn the text into list items | `put lines of [TEXT] into list [LIST]` | `Apple`, `Banana`, `Cherry` |
 
 The exact block definitions are generated from [`src/block-definitions.json`](src/block-definitions.json):
@@ -113,6 +115,21 @@ Returns one line using a one-based line number. Invalid line numbers return an e
 
 </details>
 
+### `lines of [TEXT] as JSON`
+
+Returns every line as a JSON array of strings, with as many items as the line count.
+
+<details>
+<summary>Block metadata</summary>
+
+| Property | Value |
+|---|---|
+| Type | Reporter |
+| Opcode | `linesJson` |
+| `TEXT` | String, default: `first line\nsecond line` |
+
+</details>
+
 ### `put lines of [TEXT] into list [LIST]`
 
 Replaces the contents of the named Scratch list with the lines of the supplied text.
@@ -140,10 +157,24 @@ Replaces the contents of the named Scratch list with the lines of the supplied t
 | Empty text | Treats it as one empty line |
 | Text ending with a line break | Adds an empty final line |
 | List command | Replaces all existing items in the selected list |
+| JSON block | Splits exactly like the other blocks, so the array always has as many items as `number of lines in [TEXT]` |
 | Line endings | Accepts LF (`\n`), CRLF (`\r\n`), and CR (`\r`) |
 
 > [!WARNING]
 > Copy any list contents you need to keep before running the list command.
+
+## Use with TurboWarp Structured Data
+
+`lines of [TEXT] as JSON` returns text that [TurboWarp Structured Data](https://github.com/kubohiroya/turbowarp-structured-data)
+can read directly, so its `for each` block can walk the lines:
+
+```text
+parse JSON (lines of [TEXT] as JSON) as [lines]
+for each in [lines] at path [$] max [100]
+```
+
+One loop handles up to 1,000 items, and Structured Data accepts JSON text up to 256 KiB. For longer text,
+use `put lines of [TEXT] into list [LIST]` and Scratch's own list blocks instead.
 
 For illustrated examples and the Japanese version, open the [complete user guide](https://kubohiroya.github.io/turbowarp-text-lines/).
 

@@ -30,7 +30,7 @@
       <section class="hero">
         <p class="eyebrow">TurboWarp拡張機能ガイド</p>
         <h1>テキストを、行ごとに。</h1>
-        <p class="lead">3つのシンプルなブロックで、テキストの行数を数え、1行を取り出し、全行をScratchのリストへ書き込めます。</p>
+        <p class="lead">4つのシンプルなブロックで、テキストの行数を数え、1行を取り出し、全行をJSONで取り出したりScratchのリストへ書き込んだりできます。</p>
         <div class="hero-actions">
           <a class="button primary" href="#start">Text Linesを使い始める</a>
           <a class="button" href="https://github.com/kubohiroya/turbowarp-text-lines">GitHubでソースを見る</a>
@@ -121,6 +121,14 @@
               <h3>1行を取り出す</h3>
               <p>指定した位置の行を返します。</p>
               <ul><li>行番号は1から始まります。</li><li>無効な行番号では空文字列を返します。</li></ul>
+            </div>
+          </article>
+          <article class="block-card" id="block-linesJson">
+            <div class="scratch-block reporter">lines of <span class="argument">テキスト</span> as JSON</div>
+            <div class="block-copy">
+              <h3>JSONで取り出す</h3>
+              <p>全行を文字列のJSON配列として返します。TurboWarp Structured Dataの<code>parse JSON</code>へそのまま渡せます。</p>
+              <ul><li>項目数は行数と常に一致します。</li><li>空の入力は<code>[""]</code>になります。</li></ul>
             </div>
           </article>
           <article class="block-card" id="block-writeLinesToList">

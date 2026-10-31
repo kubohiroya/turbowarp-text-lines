@@ -36,6 +36,17 @@
           }
         },
         {
+          "opcode": "linesJson",
+          "blockType": "reporter",
+          "text": "lines of [TEXT] as JSON",
+          "arguments": {
+            "TEXT": {
+              "type": "string",
+              "defaultValue": "first line\nsecond line"
+            }
+          }
+        },
+        {
           "opcode": "writeLinesToList",
           "blockType": "command",
           "text": "put lines of [TEXT] into list [LIST]",

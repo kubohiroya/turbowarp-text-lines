@@ -35,11 +35,11 @@
       </div>
     </header>
 
-    <main id="top"><p lang="en" class="complete-block-reference-link"><a href="#extension-block-reference">Complete block reference (3 blocks)</a></p>
+    <main id="top"><p lang="en" class="complete-block-reference-link"><a href="#extension-block-reference">Complete block reference (4 blocks)</a></p>
       <section class="hero">
         <p class="eyebrow">TurboWarp extension guide</p>
         <h1>Turn text into lines.</h1>
-        <p class="lead">Count lines, read one line, or copy every line into a Scratch list with three focused blocks.</p>
+        <p class="lead">Count lines, read one line, get every line as JSON, or copy every line into a Scratch list with four focused blocks.</p>
         <div class="hero-actions">
           <a class="button primary" href="#start">Start using Text Lines</a>
           <a class="button" href="https://github.com/kubohiroya/turbowarp-text-lines">View source on GitHub</a>
@@ -168,14 +168,16 @@ Cherry</pre>
   <!-- BEGIN COMPLETE BLOCK REFERENCE -->
 <section lang="en" id="extension-block-reference" aria-labelledby="block-reference-title">
 <h2 id="block-reference-title">Text Lines: complete block reference</h2>
-<p>All 3 blocks are documented below, including compatibility blocks and blocks available through optional features. Select a block to read its behavior, arguments, default values, and menu choices. Each block has a permanent link.</p>
+<p>All 4 blocks are documented below, including compatibility blocks and blocks available through optional features. Select a block to read its behavior, arguments, default values, and menu choices. Each block has a permanent link.</p>
 <nav aria-label="Block reference"><ul><li><a href="#block-lineCount"><code>number of lines in [TEXT]</code></a></li>
 <li><a href="#block-lineAt"><code>line [LINE] of [TEXT]</code></a></li>
+<li><a href="#block-linesJson"><code>lines of [TEXT] as JSON</code></a></li>
 <li><a href="#block-writeLinesToList"><code>put lines of [TEXT] into list [LIST]</code></a></li>
 </ul></nav>
 <article id="block-lineCount" class="block-reference-entry"><h3><code>number of lines in [TEXT]</code></h3><p>Returns the number of lines in the supplied text.</p><p>Block type: REPORTER. Opcode: <code>lineCount</code>. <a href="#block-lineCount">Permanent link</a></p><div class="block-reference-table"><table><thead><tr><th>Argument</th><th>Type</th><th>Default value</th><th>Menu choices</th></tr></thead><tbody><tr><th scope="row"><code>TEXT</code></th><td>STRING</td><td><code>first line
 second line</code></td><td></td></tr></tbody></table></div></article><article id="block-lineAt" class="block-reference-entry"><h3><code>line [LINE] of [TEXT]</code></h3><p>Returns one line using a one-based line number. Invalid line numbers return an empty string.</p><p>Block type: REPORTER. Opcode: <code>lineAt</code>. <a href="#block-lineAt">Permanent link</a></p><div class="block-reference-table"><table><thead><tr><th>Argument</th><th>Type</th><th>Default value</th><th>Menu choices</th></tr></thead><tbody><tr><th scope="row"><code>TEXT</code></th><td>STRING</td><td><code>first line
-second line</code></td><td></td></tr><tr><th scope="row"><code>LINE</code></th><td>NUMBER</td><td><code>1</code></td><td></td></tr></tbody></table></div><p lang="ja" class="fixed-input-help"><a href="#fixed-input-editors">このブロックの固定入力編集と互換性</a></p></article><article id="block-writeLinesToList" class="block-reference-entry"><h3><code>put lines of [TEXT] into list [LIST]</code></h3><p>Replaces the contents of the named Scratch list with the lines of the supplied text.</p><p>Block type: COMMAND. Opcode: <code>writeLinesToList</code>. <a href="#block-writeLinesToList">Permanent link</a></p><div class="block-reference-table"><table><thead><tr><th>Argument</th><th>Type</th><th>Default value</th><th>Menu choices</th></tr></thead><tbody><tr><th scope="row"><code>TEXT</code></th><td>STRING</td><td><code>first line
+second line</code></td><td></td></tr><tr><th scope="row"><code>LINE</code></th><td>NUMBER</td><td><code>1</code></td><td></td></tr></tbody></table></div><p lang="ja" class="fixed-input-help"><a href="#fixed-input-editors">このブロックの固定入力編集と互換性</a></p></article><article id="block-linesJson" class="block-reference-entry"><h3><code>lines of [TEXT] as JSON</code></h3><p>Returns every line as a JSON array of strings, with as many items as the line count.</p><p>Block type: REPORTER. Opcode: <code>linesJson</code>. <a href="#block-linesJson">Permanent link</a></p><div class="block-reference-table"><table><thead><tr><th>Argument</th><th>Type</th><th>Default value</th><th>Menu choices</th></tr></thead><tbody><tr><th scope="row"><code>TEXT</code></th><td>STRING</td><td><code>first line
+second line</code></td><td></td></tr></tbody></table></div></article><article id="block-writeLinesToList" class="block-reference-entry"><h3><code>put lines of [TEXT] into list [LIST]</code></h3><p>Replaces the contents of the named Scratch list with the lines of the supplied text.</p><p>Block type: COMMAND. Opcode: <code>writeLinesToList</code>. <a href="#block-writeLinesToList">Permanent link</a></p><div class="block-reference-table"><table><thead><tr><th>Argument</th><th>Type</th><th>Default value</th><th>Menu choices</th></tr></thead><tbody><tr><th scope="row"><code>TEXT</code></th><td>STRING</td><td><code>first line
 second line</code></td><td></td></tr><tr><th scope="row"><code>LIST</code></th><td>STRING</td><td>Not specified</td><td></td></tr></tbody></table></div></article>
 <p><a href="https://github.com/kubohiroya/turbowarp-text-lines/blob/main/README.md">Repository guide and examples</a></p>
 </section>
