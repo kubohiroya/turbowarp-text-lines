@@ -1,6 +1,6 @@
 {
   "name": "@kubohiroya/turbowarp-text-lines",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Use multiline text in TurboWarp projects with line counting, lookup, and list-writing blocks.",
   "author": {
     "name": "Hiroya Kubo",
@@ -62,7 +62,7 @@
     "typescript": "^5.9.3",
     "vite": "^8.2.2",
     "vitest": "^4.1.10",
-    "@kubohiroya/turbowarp-extension-data-editor": "^0.11.2"
+    "@kubohiroya/turbowarp-extension-data-editor": "^0.11.4"
   },
   "gitHead": "86365d0f44d92bcf6ad828be8d165e4852abd7f4",
   "x-turbowarp-source": {
